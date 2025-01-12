@@ -1,0 +1,3765 @@
+
+Scaner.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000017e6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001772  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000e  00800100  00800100  000017e6  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000017e6  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001818  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000240  00000000  00000000  00001858  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00003f04  00000000  00000000  00001a98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000ebe  00000000  00000000  0000599c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001a7a  00000000  00000000  0000685a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000628  00000000  00000000  000082d4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000128f  00000000  00000000  000088fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00001974  00000000  00000000  00009b8b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000240  00000000  00000000  0000b4ff  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+       4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+       8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+       c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      24:	0c 94 34 02 	jmp	0x468	; 0x468 <__vector_9>
+      28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      48:	0c 94 51 02 	jmp	0x4a2	; 0x4a2 <__vector_18>
+      4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+      64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+      68:	11 24       	eor	r1, r1
+      6a:	1f be       	out	0x3f, r1	; 63
+      6c:	cf ef       	ldi	r28, 0xFF	; 255
+      6e:	d8 e0       	ldi	r29, 0x08	; 8
+      70:	de bf       	out	0x3e, r29	; 62
+      72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+      74:	21 e0       	ldi	r18, 0x01	; 1
+      76:	a0 e0       	ldi	r26, 0x00	; 0
+      78:	b1 e0       	ldi	r27, 0x01	; 1
+      7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+      7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+      7e:	ae 30       	cpi	r26, 0x0E	; 14
+      80:	b2 07       	cpc	r27, r18
+      82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+      84:	0e 94 a4 02 	call	0x548	; 0x548 <main>
+      88:	0c 94 b7 0b 	jmp	0x176e	; 0x176e <_exit>
+
+0000008c <__bad_interrupt>:
+      8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <getMidDist>:
+#include "AnalyseData.h"
+
+uint16_t getMidDist(uint16_t dist1,uint16_t dist2){
+	if(((dist1-dist2)<=EQUALDIST)||((dist2-dist1)<=EQUALDIST))
+      90:	9c 01       	movw	r18, r24
+      92:	26 1b       	sub	r18, r22
+      94:	37 0b       	sbc	r19, r23
+      96:	2b 30       	cpi	r18, 0x0B	; 11
+      98:	31 05       	cpc	r19, r1
+      9a:	30 f0       	brcs	.+12     	; 0xa8 <getMidDist+0x18>
+      9c:	9b 01       	movw	r18, r22
+      9e:	28 1b       	sub	r18, r24
+      a0:	39 0b       	sbc	r19, r25
+      a2:	2b 30       	cpi	r18, 0x0B	; 11
+      a4:	31 05       	cpc	r19, r1
+      a6:	28 f4       	brcc	.+10     	; 0xb2 <getMidDist+0x22>
+		return (dist1+dist2)/2;
+      a8:	86 0f       	add	r24, r22
+      aa:	97 1f       	adc	r25, r23
+      ac:	96 95       	lsr	r25
+      ae:	87 95       	ror	r24
+      b0:	08 95       	ret
+      b2:	68 17       	cp	r22, r24
+      b4:	79 07       	cpc	r23, r25
+      b6:	08 f4       	brcc	.+2      	; 0xba <getMidDist+0x2a>
+      b8:	cb 01       	movw	r24, r22
+	else if(dist1>dist2)
+		return dist2;
+	else 
+		return dist1;	
+      ba:	08 95       	ret
+
+000000bc <HCSR04_Init>:
+#include "HCSR04_Lib.h"
+#include "UART_Lib.h"
+void HCSR04_Init(){
+	HCSR04_TRIG_PORTCONF|=1<<HCSR04_TRIG_PIN_N;
+      bc:	52 9a       	sbi	0x0a, 2	; 10
+	HCSR04_ECHO_PORTCONF&=~(1<<HCSR04_ECHO_PIN_N);
+      be:	53 98       	cbi	0x0a, 3	; 10
+	HCSR04_ECHO_PORT&=~(1<<HCSR04_ECHO_PIN_N);
+      c0:	5b 98       	cbi	0x0b, 3	; 11
+	HCSR04_TIMERCONF=(1<<CS00)|(1<<CS02);
+      c2:	85 e0       	ldi	r24, 0x05	; 5
+      c4:	85 bd       	out	0x25, r24	; 37
+      c6:	08 95       	ret
+
+000000c8 <HCSR04_Read>:
+}
+uint16_t HCSR04_Read(){
+	HCSR04_TRIG_PORT|=1<<HCSR04_TRIG_PIN_N;
+      c8:	5a 9a       	sbi	0x0b, 2	; 11
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+      ca:	8a e6       	ldi	r24, 0x6A	; 106
+      cc:	8a 95       	dec	r24
+      ce:	f1 f7       	brne	.-4      	; 0xcc <HCSR04_Read+0x4>
+      d0:	00 c0       	rjmp	.+0      	; 0xd2 <HCSR04_Read+0xa>
+	_delay_us(TRTIME);
+	HCSR04_TRIG_PORT&=~(1<<HCSR04_TRIG_PIN_N);
+      d2:	5a 98       	cbi	0x0b, 2	; 11
+	startTimeout(SONICTIMEOUT);
+      d4:	84 e6       	ldi	r24, 0x64	; 100
+      d6:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+	while(!(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N))){
+      da:	4b 99       	sbic	0x09, 3	; 9
+      dc:	0f c0       	rjmp	.+30     	; 0xfc <HCSR04_Read+0x34>
+		if(didTimeout){
+      de:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+      e2:	88 23       	and	r24, r24
+      e4:	29 f0       	breq	.+10     	; 0xf0 <HCSR04_Read+0x28>
+      e6:	2f c0       	rjmp	.+94     	; 0x146 <HCSR04_Read+0x7e>
+      e8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+      ec:	81 11       	cpse	r24, r1
+      ee:	2e c0       	rjmp	.+92     	; 0x14c <HCSR04_Read+0x84>
+      f0:	85 e0       	ldi	r24, 0x05	; 5
+      f2:	8a 95       	dec	r24
+      f4:	f1 f7       	brne	.-4      	; 0xf2 <HCSR04_Read+0x2a>
+      f6:	00 00       	nop
+uint16_t HCSR04_Read(){
+	HCSR04_TRIG_PORT|=1<<HCSR04_TRIG_PIN_N;
+	_delay_us(TRTIME);
+	HCSR04_TRIG_PORT&=~(1<<HCSR04_TRIG_PIN_N);
+	startTimeout(SONICTIMEOUT);
+	while(!(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N))){
+      f8:	4b 9b       	sbis	0x09, 3	; 9
+      fa:	f6 cf       	rjmp	.-20     	; 0xe8 <HCSR04_Read+0x20>
+		if(didTimeout){
+			return 0xFFFF;
+		}
+		_delay_us(1);
+	}
+	HCSR04_TIMER=0;
+      fc:	16 bc       	out	0x26, r1	; 38
+	startTimeout(SONICTIMEOUT);
+      fe:	84 e6       	ldi	r24, 0x64	; 100
+     100:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+	while(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N)){
+     104:	4b 9b       	sbis	0x09, 3	; 9
+     106:	0f c0       	rjmp	.+30     	; 0x126 <HCSR04_Read+0x5e>
+		if(didTimeout){
+     108:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     10c:	88 23       	and	r24, r24
+     10e:	29 f0       	breq	.+10     	; 0x11a <HCSR04_Read+0x52>
+     110:	20 c0       	rjmp	.+64     	; 0x152 <HCSR04_Read+0x8a>
+     112:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     116:	81 11       	cpse	r24, r1
+     118:	1f c0       	rjmp	.+62     	; 0x158 <HCSR04_Read+0x90>
+     11a:	85 e0       	ldi	r24, 0x05	; 5
+     11c:	8a 95       	dec	r24
+     11e:	f1 f7       	brne	.-4      	; 0x11c <HCSR04_Read+0x54>
+     120:	00 00       	nop
+		}
+		_delay_us(1);
+	}
+	HCSR04_TIMER=0;
+	startTimeout(SONICTIMEOUT);
+	while(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N)){
+     122:	4b 99       	sbic	0x09, 3	; 9
+     124:	f6 cf       	rjmp	.-20     	; 0x112 <HCSR04_Read+0x4a>
+		if(didTimeout){
+			return 0xFFFF;
+		}
+		_delay_us(1);
+	}
+	return DISTSTEP*HCSR04_TIMER;
+     126:	66 b5       	in	r22, 0x26	; 38
+     128:	70 e0       	ldi	r23, 0x00	; 0
+     12a:	80 e0       	ldi	r24, 0x00	; 0
+     12c:	90 e0       	ldi	r25, 0x00	; 0
+     12e:	0e 94 59 0a 	call	0x14b2	; 0x14b2 <__floatsisf>
+     132:	2d ec       	ldi	r18, 0xCD	; 205
+     134:	3c ec       	ldi	r19, 0xCC	; 204
+     136:	4c e8       	ldi	r20, 0x8C	; 140
+     138:	5f e3       	ldi	r21, 0x3F	; 63
+     13a:	0e 94 e6 0a 	call	0x15cc	; 0x15cc <__mulsf3>
+     13e:	0e 94 28 0a 	call	0x1450	; 0x1450 <__fixunssfsi>
+     142:	cb 01       	movw	r24, r22
+     144:	08 95       	ret
+	_delay_us(TRTIME);
+	HCSR04_TRIG_PORT&=~(1<<HCSR04_TRIG_PIN_N);
+	startTimeout(SONICTIMEOUT);
+	while(!(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N))){
+		if(didTimeout){
+			return 0xFFFF;
+     146:	8f ef       	ldi	r24, 0xFF	; 255
+     148:	9f ef       	ldi	r25, 0xFF	; 255
+     14a:	08 95       	ret
+     14c:	8f ef       	ldi	r24, 0xFF	; 255
+     14e:	9f ef       	ldi	r25, 0xFF	; 255
+     150:	08 95       	ret
+	}
+	HCSR04_TIMER=0;
+	startTimeout(SONICTIMEOUT);
+	while(HCSR04_ECHO_PIN&(1<<HCSR04_ECHO_PIN_N)){
+		if(didTimeout){
+			return 0xFFFF;
+     152:	8f ef       	ldi	r24, 0xFF	; 255
+     154:	9f ef       	ldi	r25, 0xFF	; 255
+     156:	08 95       	ret
+     158:	8f ef       	ldi	r24, 0xFF	; 255
+     15a:	9f ef       	ldi	r25, 0xFF	; 255
+		}
+		_delay_us(1);
+	}
+	return DISTSTEP*HCSR04_TIMER;
+     15c:	08 95       	ret
+
+0000015e <I2C_Init>:
+	bt|=((uint32_t)I2C_ReciveByte())<<16;
+	bt|=((uint32_t)I2C_ReciveByte())<<8;
+	bt|=(uint32_t)I2C_ReciveByteLast();
+	I2C_Stop();
+	return bt;
+}
+     15e:	80 e2       	ldi	r24, 0x20	; 32
+     160:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__DATA_REGION_ORIGIN__+0x58>
+     164:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     168:	08 95       	ret
+
+0000016a <I2C_Start>:
+     16a:	cf 93       	push	r28
+     16c:	df 93       	push	r29
+     16e:	cc eb       	ldi	r28, 0xBC	; 188
+     170:	d0 e0       	ldi	r29, 0x00	; 0
+     172:	84 ea       	ldi	r24, 0xA4	; 164
+     174:	88 83       	st	Y, r24
+     176:	8e e1       	ldi	r24, 0x1E	; 30
+     178:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+     17c:	88 81       	ld	r24, Y
+     17e:	88 23       	and	r24, r24
+     180:	9c f0       	brlt	.+38     	; 0x1a8 <I2C_Start+0x3e>
+     182:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     186:	81 11       	cpse	r24, r1
+     188:	07 c0       	rjmp	.+14     	; 0x198 <I2C_Start+0x2e>
+     18a:	ec eb       	ldi	r30, 0xBC	; 188
+     18c:	f0 e0       	ldi	r31, 0x00	; 0
+     18e:	08 c0       	rjmp	.+16     	; 0x1a0 <I2C_Start+0x36>
+     190:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     194:	88 23       	and	r24, r24
+     196:	21 f0       	breq	.+8      	; 0x1a0 <I2C_Start+0x36>
+     198:	81 e0       	ldi	r24, 0x01	; 1
+     19a:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <I2C_err>
+     19e:	04 c0       	rjmp	.+8      	; 0x1a8 <I2C_Start+0x3e>
+     1a0:	00 00       	nop
+     1a2:	80 81       	ld	r24, Z
+     1a4:	88 23       	and	r24, r24
+     1a6:	a4 f7       	brge	.-24     	; 0x190 <I2C_Start+0x26>
+     1a8:	df 91       	pop	r29
+     1aa:	cf 91       	pop	r28
+     1ac:	08 95       	ret
+
+000001ae <I2C_SendByte>:
+     1ae:	cf 93       	push	r28
+     1b0:	df 93       	push	r29
+     1b2:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
+     1b6:	cc eb       	ldi	r28, 0xBC	; 188
+     1b8:	d0 e0       	ldi	r29, 0x00	; 0
+     1ba:	84 e8       	ldi	r24, 0x84	; 132
+     1bc:	88 83       	st	Y, r24
+     1be:	8e e1       	ldi	r24, 0x1E	; 30
+     1c0:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+     1c4:	88 81       	ld	r24, Y
+     1c6:	88 23       	and	r24, r24
+     1c8:	9c f0       	brlt	.+38     	; 0x1f0 <I2C_SendByte+0x42>
+     1ca:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     1ce:	81 11       	cpse	r24, r1
+     1d0:	07 c0       	rjmp	.+14     	; 0x1e0 <I2C_SendByte+0x32>
+     1d2:	ec eb       	ldi	r30, 0xBC	; 188
+     1d4:	f0 e0       	ldi	r31, 0x00	; 0
+     1d6:	08 c0       	rjmp	.+16     	; 0x1e8 <I2C_SendByte+0x3a>
+     1d8:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     1dc:	88 23       	and	r24, r24
+     1de:	21 f0       	breq	.+8      	; 0x1e8 <I2C_SendByte+0x3a>
+     1e0:	81 e0       	ldi	r24, 0x01	; 1
+     1e2:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <I2C_err>
+     1e6:	04 c0       	rjmp	.+8      	; 0x1f0 <I2C_SendByte+0x42>
+     1e8:	00 00       	nop
+     1ea:	80 81       	ld	r24, Z
+     1ec:	88 23       	and	r24, r24
+     1ee:	a4 f7       	brge	.-24     	; 0x1d8 <I2C_SendByte+0x2a>
+     1f0:	df 91       	pop	r29
+     1f2:	cf 91       	pop	r28
+     1f4:	08 95       	ret
+
+000001f6 <I2C_ReciveByte>:
+     1f6:	cf 93       	push	r28
+     1f8:	df 93       	push	r29
+     1fa:	cc eb       	ldi	r28, 0xBC	; 188
+     1fc:	d0 e0       	ldi	r29, 0x00	; 0
+     1fe:	84 ec       	ldi	r24, 0xC4	; 196
+     200:	88 83       	st	Y, r24
+     202:	8e e1       	ldi	r24, 0x1E	; 30
+     204:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+     208:	88 81       	ld	r24, Y
+     20a:	88 23       	and	r24, r24
+     20c:	a4 f0       	brlt	.+40     	; 0x236 <I2C_ReciveByte+0x40>
+     20e:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     212:	81 11       	cpse	r24, r1
+     214:	07 c0       	rjmp	.+14     	; 0x224 <I2C_ReciveByte+0x2e>
+     216:	ec eb       	ldi	r30, 0xBC	; 188
+     218:	f0 e0       	ldi	r31, 0x00	; 0
+     21a:	09 c0       	rjmp	.+18     	; 0x22e <I2C_ReciveByte+0x38>
+     21c:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     220:	88 23       	and	r24, r24
+     222:	29 f0       	breq	.+10     	; 0x22e <I2C_ReciveByte+0x38>
+     224:	81 e0       	ldi	r24, 0x01	; 1
+     226:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <I2C_err>
+     22a:	8f ef       	ldi	r24, 0xFF	; 255
+     22c:	06 c0       	rjmp	.+12     	; 0x23a <I2C_ReciveByte+0x44>
+     22e:	00 00       	nop
+     230:	80 81       	ld	r24, Z
+     232:	88 23       	and	r24, r24
+     234:	9c f7       	brge	.-26     	; 0x21c <I2C_ReciveByte+0x26>
+     236:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
+     23a:	df 91       	pop	r29
+     23c:	cf 91       	pop	r28
+     23e:	08 95       	ret
+
+00000240 <I2C_ReciveByteLast>:
+     240:	cf 93       	push	r28
+     242:	df 93       	push	r29
+     244:	cc eb       	ldi	r28, 0xBC	; 188
+     246:	d0 e0       	ldi	r29, 0x00	; 0
+     248:	84 e8       	ldi	r24, 0x84	; 132
+     24a:	88 83       	st	Y, r24
+     24c:	8e e1       	ldi	r24, 0x1E	; 30
+     24e:	0e 94 bf 03 	call	0x77e	; 0x77e <startTimeout>
+     252:	88 81       	ld	r24, Y
+     254:	88 23       	and	r24, r24
+     256:	a4 f0       	brlt	.+40     	; 0x280 <I2C_ReciveByteLast+0x40>
+     258:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     25c:	81 11       	cpse	r24, r1
+     25e:	07 c0       	rjmp	.+14     	; 0x26e <I2C_ReciveByteLast+0x2e>
+     260:	ec eb       	ldi	r30, 0xBC	; 188
+     262:	f0 e0       	ldi	r31, 0x00	; 0
+     264:	09 c0       	rjmp	.+18     	; 0x278 <I2C_ReciveByteLast+0x38>
+     266:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <didTimeout>
+     26a:	88 23       	and	r24, r24
+     26c:	29 f0       	breq	.+10     	; 0x278 <I2C_ReciveByteLast+0x38>
+     26e:	81 e0       	ldi	r24, 0x01	; 1
+     270:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <I2C_err>
+     274:	8f ef       	ldi	r24, 0xFF	; 255
+     276:	08 c0       	rjmp	.+16     	; 0x288 <I2C_ReciveByteLast+0x48>
+     278:	00 00       	nop
+     27a:	80 81       	ld	r24, Z
+     27c:	88 23       	and	r24, r24
+     27e:	9c f7       	brge	.-26     	; 0x266 <I2C_ReciveByteLast+0x26>
+     280:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     284:	80 91 bb 00 	lds	r24, 0x00BB	; 0x8000bb <__DATA_REGION_ORIGIN__+0x5b>
+     288:	df 91       	pop	r29
+     28a:	cf 91       	pop	r28
+     28c:	08 95       	ret
+
+0000028e <I2C_writeReg>:
+     28e:	1f 93       	push	r17
+     290:	cf 93       	push	r28
+     292:	df 93       	push	r29
+     294:	18 2f       	mov	r17, r24
+     296:	d6 2f       	mov	r29, r22
+     298:	c4 2f       	mov	r28, r20
+     29a:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     29e:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     2a2:	81 2f       	mov	r24, r17
+     2a4:	88 0f       	add	r24, r24
+     2a6:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2aa:	8d 2f       	mov	r24, r29
+     2ac:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2b0:	8c 2f       	mov	r24, r28
+     2b2:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2b6:	84 e9       	ldi	r24, 0x94	; 148
+     2b8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+     2bc:	df 91       	pop	r29
+     2be:	cf 91       	pop	r28
+     2c0:	1f 91       	pop	r17
+     2c2:	08 95       	ret
+
+000002c4 <I2C_readReg>:
+     2c4:	cf 93       	push	r28
+     2c6:	df 93       	push	r29
+     2c8:	c8 2f       	mov	r28, r24
+     2ca:	d6 2f       	mov	r29, r22
+     2cc:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     2d0:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     2d4:	cc 0f       	add	r28, r28
+     2d6:	8c 2f       	mov	r24, r28
+     2d8:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2dc:	8d 2f       	mov	r24, r29
+     2de:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2e2:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     2e6:	81 e0       	ldi	r24, 0x01	; 1
+     2e8:	8c 0f       	add	r24, r28
+     2ea:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     2ee:	0e 94 20 01 	call	0x240	; 0x240 <I2C_ReciveByteLast>
+     2f2:	94 e9       	ldi	r25, 0x94	; 148
+     2f4:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+     2f8:	df 91       	pop	r29
+     2fa:	cf 91       	pop	r28
+     2fc:	08 95       	ret
+
+000002fe <I2C_writeReg16>:
+     2fe:	0f 93       	push	r16
+     300:	1f 93       	push	r17
+     302:	cf 93       	push	r28
+     304:	df 93       	push	r29
+     306:	08 2f       	mov	r16, r24
+     308:	16 2f       	mov	r17, r22
+     30a:	c4 2f       	mov	r28, r20
+     30c:	d5 2f       	mov	r29, r21
+     30e:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     312:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     316:	80 2f       	mov	r24, r16
+     318:	88 0f       	add	r24, r24
+     31a:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     31e:	81 2f       	mov	r24, r17
+     320:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     324:	8d 2f       	mov	r24, r29
+     326:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     32a:	8c 2f       	mov	r24, r28
+     32c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     330:	84 e9       	ldi	r24, 0x94	; 148
+     332:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+     336:	df 91       	pop	r29
+     338:	cf 91       	pop	r28
+     33a:	1f 91       	pop	r17
+     33c:	0f 91       	pop	r16
+     33e:	08 95       	ret
+
+00000340 <I2C_readReg16>:
+     340:	cf 93       	push	r28
+     342:	df 93       	push	r29
+     344:	c8 2f       	mov	r28, r24
+     346:	d6 2f       	mov	r29, r22
+     348:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+     34c:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     350:	cc 0f       	add	r28, r28
+     352:	8c 2f       	mov	r24, r28
+     354:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     358:	8d 2f       	mov	r24, r29
+     35a:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     35e:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+     362:	81 e0       	ldi	r24, 0x01	; 1
+     364:	8c 0f       	add	r24, r28
+     366:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+     36a:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <I2C_ReciveByte>
+     36e:	c8 2f       	mov	r28, r24
+     370:	d0 e0       	ldi	r29, 0x00	; 0
+     372:	dc 2f       	mov	r29, r28
+     374:	cc 27       	eor	r28, r28
+     376:	0e 94 20 01 	call	0x240	; 0x240 <I2C_ReciveByteLast>
+     37a:	94 e9       	ldi	r25, 0x94	; 148
+     37c:	90 93 bc 00 	sts	0x00BC, r25	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+     380:	9e 01       	movw	r18, r28
+     382:	28 2b       	or	r18, r24
+     384:	c9 01       	movw	r24, r18
+     386:	df 91       	pop	r29
+     388:	cf 91       	pop	r28
+     38a:	08 95       	ret
+
+0000038c <I2C_writeBuff>:
+
+void I2C_writeBuff(uint8_t addr,uint8_t regStart,uint8_t *data,uint8_t cnt){
+     38c:	ef 92       	push	r14
+     38e:	ff 92       	push	r15
+     390:	0f 93       	push	r16
+     392:	1f 93       	push	r17
+     394:	cf 93       	push	r28
+     396:	df 93       	push	r29
+     398:	d8 2f       	mov	r29, r24
+     39a:	c6 2f       	mov	r28, r22
+     39c:	7a 01       	movw	r14, r20
+     39e:	12 2f       	mov	r17, r18
+	I2C_err=0;
+     3a0:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+	I2C_Start();
+     3a4:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+	I2C_SendByte(addr<<1);
+     3a8:	8d 2f       	mov	r24, r29
+     3aa:	88 0f       	add	r24, r24
+     3ac:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+	I2C_SendByte(regStart);
+     3b0:	8c 2f       	mov	r24, r28
+     3b2:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+	for(uint8_t i=0;i<cnt;i++)
+     3b6:	11 23       	and	r17, r17
+     3b8:	71 f0       	breq	.+28     	; 0x3d6 <I2C_writeBuff+0x4a>
+     3ba:	e7 01       	movw	r28, r14
+     3bc:	11 50       	subi	r17, 0x01	; 1
+     3be:	01 2f       	mov	r16, r17
+     3c0:	10 e0       	ldi	r17, 0x00	; 0
+     3c2:	0f 5f       	subi	r16, 0xFF	; 255
+     3c4:	1f 4f       	sbci	r17, 0xFF	; 255
+     3c6:	0e 0d       	add	r16, r14
+     3c8:	1f 1d       	adc	r17, r15
+		I2C_SendByte(data[i]);
+     3ca:	89 91       	ld	r24, Y+
+     3cc:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+void I2C_writeBuff(uint8_t addr,uint8_t regStart,uint8_t *data,uint8_t cnt){
+	I2C_err=0;
+	I2C_Start();
+	I2C_SendByte(addr<<1);
+	I2C_SendByte(regStart);
+	for(uint8_t i=0;i<cnt;i++)
+     3d0:	c0 17       	cp	r28, r16
+     3d2:	d1 07       	cpc	r29, r17
+     3d4:	d1 f7       	brne	.-12     	; 0x3ca <I2C_writeBuff+0x3e>
+	 }
+}
+
+void I2C_Stop()
+{
+	 TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+     3d6:	84 e9       	ldi	r24, 0x94	; 148
+     3d8:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+	I2C_SendByte(addr<<1);
+	I2C_SendByte(regStart);
+	for(uint8_t i=0;i<cnt;i++)
+		I2C_SendByte(data[i]);
+	I2C_Stop();
+}
+     3dc:	df 91       	pop	r29
+     3de:	cf 91       	pop	r28
+     3e0:	1f 91       	pop	r17
+     3e2:	0f 91       	pop	r16
+     3e4:	ff 90       	pop	r15
+     3e6:	ef 90       	pop	r14
+     3e8:	08 95       	ret
+
+000003ea <I2C_readToBuff>:
+
+void I2C_readToBuff(uint8_t addr,uint8_t regStart,uint8_t *data,uint8_t cnt){
+     3ea:	df 92       	push	r13
+     3ec:	ef 92       	push	r14
+     3ee:	ff 92       	push	r15
+     3f0:	0f 93       	push	r16
+     3f2:	1f 93       	push	r17
+     3f4:	cf 93       	push	r28
+     3f6:	df 93       	push	r29
+     3f8:	c8 2f       	mov	r28, r24
+     3fa:	d6 2f       	mov	r29, r22
+     3fc:	7a 01       	movw	r14, r20
+     3fe:	d2 2e       	mov	r13, r18
+	I2C_err=0;
+     400:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <I2C_err>
+	I2C_Start();
+     404:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+	I2C_SendByte(addr<<1);
+     408:	cc 0f       	add	r28, r28
+     40a:	8c 2f       	mov	r24, r28
+     40c:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+	I2C_SendByte(regStart);
+     410:	8d 2f       	mov	r24, r29
+     412:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+	I2C_Start();
+     416:	0e 94 b5 00 	call	0x16a	; 0x16a <I2C_Start>
+	I2C_SendByte((addr<<1)+1);
+     41a:	81 e0       	ldi	r24, 0x01	; 1
+     41c:	8c 0f       	add	r24, r28
+     41e:	0e 94 d7 00 	call	0x1ae	; 0x1ae <I2C_SendByte>
+	for(int i=0;i<(cnt-1);i++)
+     422:	8d 2d       	mov	r24, r13
+     424:	90 e0       	ldi	r25, 0x00	; 0
+     426:	01 97       	sbiw	r24, 0x01	; 1
+     428:	18 16       	cp	r1, r24
+     42a:	19 06       	cpc	r1, r25
+     42c:	54 f4       	brge	.+20     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+     42e:	e7 01       	movw	r28, r14
+     430:	8c 01       	movw	r16, r24
+     432:	0e 0d       	add	r16, r14
+     434:	1f 1d       	adc	r17, r15
+		data[i]=I2C_ReciveByte();
+     436:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <I2C_ReciveByte>
+     43a:	89 93       	st	Y+, r24
+	I2C_Start();
+	I2C_SendByte(addr<<1);
+	I2C_SendByte(regStart);
+	I2C_Start();
+	I2C_SendByte((addr<<1)+1);
+	for(int i=0;i<(cnt-1);i++)
+     43c:	c0 17       	cp	r28, r16
+     43e:	d1 07       	cpc	r29, r17
+     440:	d1 f7       	brne	.-12     	; 0x436 <__LOCK_REGION_LENGTH__+0x36>
+		data[i]=I2C_ReciveByte();
+	data[cnt-1]=I2C_ReciveByteLast();
+     442:	cd 2d       	mov	r28, r13
+     444:	d0 e0       	ldi	r29, 0x00	; 0
+     446:	21 97       	sbiw	r28, 0x01	; 1
+     448:	ce 0d       	add	r28, r14
+     44a:	df 1d       	adc	r29, r15
+     44c:	0e 94 20 01 	call	0x240	; 0x240 <I2C_ReciveByteLast>
+     450:	88 83       	st	Y, r24
+	 }
+}
+
+void I2C_Stop()
+{
+	 TWCR = (1<<TWINT)|(1<<TWSTO)|(1<<TWEN);
+     452:	84 e9       	ldi	r24, 0x94	; 148
+     454:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__DATA_REGION_ORIGIN__+0x5c>
+	I2C_SendByte((addr<<1)+1);
+	for(int i=0;i<(cnt-1);i++)
+		data[i]=I2C_ReciveByte();
+	data[cnt-1]=I2C_ReciveByteLast();
+	I2C_Stop();
+     458:	df 91       	pop	r29
+     45a:	cf 91       	pop	r28
+     45c:	1f 91       	pop	r17
+     45e:	0f 91       	pop	r16
+     460:	ff 90       	pop	r15
+     462:	ef 90       	pop	r14
+     464:	df 90       	pop	r13
+     466:	08 95       	ret
+
+00000468 <__vector_9>:
+ 
+uint8_t isWork;
+uint8_t minAng;
+uint8_t maxAng;
+uint8_t step;
+ISR(TIMER2_OVF_vect){
+     468:	1f 92       	push	r1
+     46a:	0f 92       	push	r0
+     46c:	0f b6       	in	r0, 0x3f	; 63
+     46e:	0f 92       	push	r0
+     470:	11 24       	eor	r1, r1
+     472:	8f 93       	push	r24
+     474:	9f 93       	push	r25
+	if(timoutTimerExp>0){
+     476:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+     47a:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+     47e:	00 97       	sbiw	r24, 0x00	; 0
+     480:	31 f0       	breq	.+12     	; 0x48e <__vector_9+0x26>
+		timoutTimerExp--;
+     482:	01 97       	sbiw	r24, 0x01	; 1
+     484:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+     488:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+     48c:	03 c0       	rjmp	.+6      	; 0x494 <__vector_9+0x2c>
+	}
+	else{
+		didTimeout=1;
+     48e:	81 e0       	ldi	r24, 0x01	; 1
+     490:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <didTimeout>
+	}
+}
+     494:	9f 91       	pop	r25
+     496:	8f 91       	pop	r24
+     498:	0f 90       	pop	r0
+     49a:	0f be       	out	0x3f, r0	; 63
+     49c:	0f 90       	pop	r0
+     49e:	1f 90       	pop	r1
+     4a0:	18 95       	reti
+
+000004a2 <__vector_18>:
+
+ISR(USART_RX_vect){
+     4a2:	1f 92       	push	r1
+     4a4:	0f 92       	push	r0
+     4a6:	0f b6       	in	r0, 0x3f	; 63
+     4a8:	0f 92       	push	r0
+     4aa:	11 24       	eor	r1, r1
+     4ac:	2f 93       	push	r18
+     4ae:	3f 93       	push	r19
+     4b0:	4f 93       	push	r20
+     4b2:	5f 93       	push	r21
+     4b4:	6f 93       	push	r22
+     4b6:	7f 93       	push	r23
+     4b8:	8f 93       	push	r24
+     4ba:	9f 93       	push	r25
+     4bc:	af 93       	push	r26
+     4be:	bf 93       	push	r27
+     4c0:	ef 93       	push	r30
+     4c2:	ff 93       	push	r31
+	switch(UART_read8()){
+     4c4:	0e 94 ee 03 	call	0x7dc	; 0x7dc <UART_read8>
+     4c8:	82 3b       	cpi	r24, 0xB2	; 178
+     4ca:	99 f0       	breq	.+38     	; 0x4f2 <__vector_18+0x50>
+     4cc:	28 f4       	brcc	.+10     	; 0x4d8 <__vector_18+0x36>
+     4ce:	80 3b       	cpi	r24, 0xB0	; 176
+     4d0:	49 f0       	breq	.+18     	; 0x4e4 <__vector_18+0x42>
+     4d2:	81 3b       	cpi	r24, 0xB1	; 177
+     4d4:	51 f0       	breq	.+20     	; 0x4ea <__vector_18+0x48>
+     4d6:	27 c0       	rjmp	.+78     	; 0x526 <__vector_18+0x84>
+     4d8:	84 3b       	cpi	r24, 0xB4	; 180
+     4da:	e1 f0       	breq	.+56     	; 0x514 <__vector_18+0x72>
+     4dc:	b0 f0       	brcs	.+44     	; 0x50a <__vector_18+0x68>
+     4de:	85 3b       	cpi	r24, 0xB5	; 181
+     4e0:	f1 f0       	breq	.+60     	; 0x51e <__vector_18+0x7c>
+     4e2:	21 c0       	rjmp	.+66     	; 0x526 <__vector_18+0x84>
+		case UARTSTOPCOMMAND:
+			isWork=0;
+     4e4:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <isWork>
+			break;
+     4e8:	1e c0       	rjmp	.+60     	; 0x526 <__vector_18+0x84>
+		case UARTSTARTCOMMAND:
+			isWork=1;
+     4ea:	81 e0       	ldi	r24, 0x01	; 1
+     4ec:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <isWork>
+			break;
+     4f0:	1a c0       	rjmp	.+52     	; 0x526 <__vector_18+0x84>
+		case UARTSTATEREQUEST:
+			if(isWork)
+     4f2:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <isWork>
+     4f6:	88 23       	and	r24, r24
+     4f8:	21 f0       	breq	.+8      	; 0x502 <__vector_18+0x60>
+			UART_write8(UARTSTATEWORKRESPONSE);
+     4fa:	85 ea       	ldi	r24, 0xA5	; 165
+     4fc:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+     500:	12 c0       	rjmp	.+36     	; 0x526 <__vector_18+0x84>
+			else
+			UART_write8(UARTSTATEWAITRESPONSE);
+     502:	86 ea       	ldi	r24, 0xA6	; 166
+     504:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+     508:	0e c0       	rjmp	.+28     	; 0x526 <__vector_18+0x84>
+			break;
+		case UARTSETMINANG:
+			minAng=UART_read8();
+     50a:	0e 94 ee 03 	call	0x7dc	; 0x7dc <UART_read8>
+     50e:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <minAng>
+			break;
+     512:	09 c0       	rjmp	.+18     	; 0x526 <__vector_18+0x84>
+		case UARTSETMAXANG:
+			maxAng=UART_read8();
+     514:	0e 94 ee 03 	call	0x7dc	; 0x7dc <UART_read8>
+     518:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <maxAng>
+			break;
+     51c:	04 c0       	rjmp	.+8      	; 0x526 <__vector_18+0x84>
+		case UARTSETSTEP:
+			step=UART_read8();
+     51e:	0e 94 ee 03 	call	0x7dc	; 0x7dc <UART_read8>
+     522:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <step>
+			break;
+		default:
+			break;
+	}
+}
+     526:	ff 91       	pop	r31
+     528:	ef 91       	pop	r30
+     52a:	bf 91       	pop	r27
+     52c:	af 91       	pop	r26
+     52e:	9f 91       	pop	r25
+     530:	8f 91       	pop	r24
+     532:	7f 91       	pop	r23
+     534:	6f 91       	pop	r22
+     536:	5f 91       	pop	r21
+     538:	4f 91       	pop	r20
+     53a:	3f 91       	pop	r19
+     53c:	2f 91       	pop	r18
+     53e:	0f 90       	pop	r0
+     540:	0f be       	out	0x3f, r0	; 63
+     542:	0f 90       	pop	r0
+     544:	1f 90       	pop	r1
+     546:	18 95       	reti
+
+00000548 <main>:
+
+
+int main(void)
+{
+     548:	2f ef       	ldi	r18, 0xFF	; 255
+     54a:	3f e7       	ldi	r19, 0x7F	; 127
+_crc16_update(uint16_t __crc, uint8_t __data)
+{
+	uint8_t __tmp;
+	uint16_t __ret;
+
+	__asm__ __volatile__ (
+     54c:	40 e0       	ldi	r20, 0x00	; 0
+     54e:	60 e0       	ldi	r22, 0x00	; 0
+     550:	70 e0       	ldi	r23, 0x00	; 0
+     552:	cb 01       	movw	r24, r22
+     554:	84 27       	eor	r24, r20
+     556:	58 2f       	mov	r21, r24
+     558:	52 95       	swap	r21
+     55a:	58 27       	eor	r21, r24
+     55c:	05 2e       	mov	r0, r21
+     55e:	56 95       	lsr	r21
+     560:	56 95       	lsr	r21
+     562:	50 25       	eor	r21, r0
+     564:	05 2e       	mov	r0, r21
+     566:	56 95       	lsr	r21
+     568:	50 25       	eor	r21, r0
+     56a:	57 70       	andi	r21, 0x07	; 7
+     56c:	08 2e       	mov	r0, r24
+     56e:	89 2f       	mov	r24, r25
+     570:	56 95       	lsr	r21
+     572:	07 94       	ror	r0
+     574:	57 95       	ror	r21
+     576:	90 2d       	mov	r25, r0
+     578:	85 27       	eor	r24, r21
+     57a:	06 94       	lsr	r0
+     57c:	57 95       	ror	r21
+     57e:	90 25       	eor	r25, r0
+     580:	85 27       	eor	r24, r21
+     582:	21 50       	subi	r18, 0x01	; 1
+     584:	31 09       	sbc	r19, r1
+	uint8_t sum=0;
+	for(uint16_t i=0;i<FLASHEND;i++){
+     586:	29 f7       	brne	.-54     	; 0x552 <main+0xa>
+		_crc16_update(sum,0);
+	}
+	UART_Init();
+     588:	0e 94 c9 03 	call	0x792	; 0x792 <UART_Init>
+	UART_write8(UARTDEVICESTART);
+     58c:	80 ea       	ldi	r24, 0xA0	; 160
+     58e:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+	I2C_Init();
+     592:	0e 94 af 00 	call	0x15e	; 0x15e <I2C_Init>
+	servoInit();
+     596:	0e 94 77 03 	call	0x6ee	; 0x6ee <servoInit>
+	VL53L0X_init(1);
+     59a:	81 e0       	ldi	r24, 0x01	; 1
+     59c:	0e 94 77 07 	call	0xeee	; 0xeee <VL53L0X_init>
+	
+	HCSR04_Init();
+     5a0:	0e 94 5e 00 	call	0xbc	; 0xbc <HCSR04_Init>
+	timeoutTimerInit();
+     5a4:	0e 94 ae 03 	call	0x75c	; 0x75c <timeoutTimerInit>
+	sei();
+     5a8:	78 94       	sei
+	
+	uint8_t currAng=1;
+	uint8_t rtdir=0;
+	isWork=0;
+     5aa:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <isWork>
+	minAng=0;
+     5ae:	10 92 0b 01 	sts	0x010B, r1	; 0x80010b <minAng>
+	maxAng=180;
+     5b2:	84 eb       	ldi	r24, 0xB4	; 180
+     5b4:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <maxAng>
+	step=1;
+     5b8:	81 e0       	ldi	r24, 0x01	; 1
+     5ba:	80 93 0c 01 	sts	0x010C, r24	; 0x80010c <step>
+	HCSR04_Init();
+	timeoutTimerInit();
+	sei();
+	
+	uint8_t currAng=1;
+	uint8_t rtdir=0;
+     5be:	d0 e0       	ldi	r29, 0x00	; 0
+	
+	HCSR04_Init();
+	timeoutTimerInit();
+	sei();
+	
+	uint8_t currAng=1;
+     5c0:	c1 e0       	ldi	r28, 0x01	; 1
+					currAng=180;
+			}
+			if(currAng>=maxAng)
+				rtdir=1;
+			if(currAng<=minAng)
+				rtdir=0;
+     5c2:	b1 2c       	mov	r11, r1
+			if(I2C_err){
+				UART_write8(UARTERRORLASERTIMEOUT);
+				VL53L0X_init(1);
+			}else if(dist2>LASERMAXRANGE){
+				UART_write8(UARTERRORLASEROUTOFRANGE);
+				dist2=0xFFFF;
+     5c4:	cc 24       	eor	r12, r12
+     5c6:	ca 94       	dec	r12
+     5c8:	dd 24       	eor	r13, r13
+     5ca:	da 94       	dec	r13
+	minAng=0;
+	maxAng=180;
+	step=1;
+    while (1) 
+    {
+		if(isWork){
+     5cc:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <isWork>
+     5d0:	88 23       	and	r24, r24
+     5d2:	09 f4       	brne	.+2      	; 0x5d6 <main+0x8e>
+     5d4:	85 c0       	rjmp	.+266    	; 0x6e0 <main+0x198>
+			VL53L0X_askRangeSingleMillimeters();
+     5d6:	0e 94 3a 04 	call	0x874	; 0x874 <VL53L0X_askRangeSingleMillimeters>
+			uint16_t dist1=HCSR04_Read();
+     5da:	0e 94 64 00 	call	0xc8	; 0xc8 <HCSR04_Read>
+     5de:	8c 01       	movw	r16, r24
+			if(dist1==0xFFFF){
+     5e0:	0f 3f       	cpi	r16, 0xFF	; 255
+     5e2:	8f ef       	ldi	r24, 0xFF	; 255
+     5e4:	18 07       	cpc	r17, r24
+     5e6:	21 f4       	brne	.+8      	; 0x5f0 <main+0xa8>
+				UART_write8(UARTERRORSONICTIMEOUT);
+     5e8:	82 ec       	ldi	r24, 0xC2	; 194
+     5ea:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+     5ee:	0f c0       	rjmp	.+30     	; 0x60e <main+0xc6>
+			}else if(dist1>SONICMAXRANGE){
+     5f0:	09 3c       	cpi	r16, 0xC9	; 201
+     5f2:	11 05       	cpc	r17, r1
+     5f4:	30 f0       	brcs	.+12     	; 0x602 <main+0xba>
+				UART_write8(UARTERRORSONICOUTOFRANGE);
+     5f6:	84 ec       	ldi	r24, 0xC4	; 196
+     5f8:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				dist1=0xFFFF;
+     5fc:	0c 2d       	mov	r16, r12
+     5fe:	1d 2d       	mov	r17, r13
+     600:	06 c0       	rjmp	.+12     	; 0x60e <main+0xc6>
+			}else{
+				UART_write8(UARTSENDSONIC);
+     602:	82 ea       	ldi	r24, 0xA2	; 162
+     604:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				UART_write16(dist1);
+     608:	c8 01       	movw	r24, r16
+     60a:	0e 94 df 03 	call	0x7be	; 0x7be <UART_write16>
+			}
+			uint16_t dist2=VL53L0X_readRangeSingleMillimeters()/10;
+     60e:	0e 94 68 04 	call	0x8d0	; 0x8d0 <VL53L0X_readRangeSingleMillimeters>
+     612:	9c 01       	movw	r18, r24
+     614:	ad ec       	ldi	r26, 0xCD	; 205
+     616:	bc ec       	ldi	r27, 0xCC	; 204
+     618:	0e 94 9d 0b 	call	0x173a	; 0x173a <__umulhisi3>
+     61c:	7c 01       	movw	r14, r24
+     61e:	f6 94       	lsr	r15
+     620:	e7 94       	ror	r14
+     622:	f6 94       	lsr	r15
+     624:	e7 94       	ror	r14
+     626:	f6 94       	lsr	r15
+     628:	e7 94       	ror	r14
+			if(I2C_err){
+     62a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     62e:	88 23       	and	r24, r24
+     630:	39 f0       	breq	.+14     	; 0x640 <main+0xf8>
+				UART_write8(UARTERRORLASERTIMEOUT);
+     632:	81 ec       	ldi	r24, 0xC1	; 193
+     634:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				VL53L0X_init(1);
+     638:	81 e0       	ldi	r24, 0x01	; 1
+     63a:	0e 94 77 07 	call	0xeee	; 0xeee <VL53L0X_init>
+     63e:	19 c0       	rjmp	.+50     	; 0x672 <main+0x12a>
+			}else if(dist2>LASERMAXRANGE){
+     640:	89 ec       	ldi	r24, 0xC9	; 201
+     642:	e8 16       	cp	r14, r24
+     644:	f1 04       	cpc	r15, r1
+     646:	50 f0       	brcs	.+20     	; 0x65c <main+0x114>
+				UART_write8(UARTERRORLASEROUTOFRANGE);
+     648:	83 ec       	ldi	r24, 0xC3	; 195
+     64a:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				dist2=0xFFFF;
+			}else{
+				UART_write8(UARTSENDLASER);
+				UART_write16(dist2);
+			}
+			if(dist1==0xFFFF&&dist2==0xFFFF){
+     64e:	0f 3f       	cpi	r16, 0xFF	; 255
+     650:	8f ef       	ldi	r24, 0xFF	; 255
+     652:	18 07       	cpc	r17, r24
+     654:	51 f0       	breq	.+20     	; 0x66a <main+0x122>
+			if(I2C_err){
+				UART_write8(UARTERRORLASERTIMEOUT);
+				VL53L0X_init(1);
+			}else if(dist2>LASERMAXRANGE){
+				UART_write8(UARTERRORLASEROUTOFRANGE);
+				dist2=0xFFFF;
+     656:	ec 2c       	mov	r14, r12
+     658:	fd 2c       	mov	r15, r13
+     65a:	0b c0       	rjmp	.+22     	; 0x672 <main+0x12a>
+			}else{
+				UART_write8(UARTSENDLASER);
+     65c:	81 ea       	ldi	r24, 0xA1	; 161
+     65e:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				UART_write16(dist2);
+     662:	c7 01       	movw	r24, r14
+     664:	0e 94 df 03 	call	0x7be	; 0x7be <UART_write16>
+     668:	04 c0       	rjmp	.+8      	; 0x672 <main+0x12a>
+			}
+			if(dist1==0xFFFF&&dist2==0xFFFF){
+				UART_write8(UARTERRORMIDOUTOFRANGE);
+     66a:	85 ec       	ldi	r24, 0xC5	; 197
+     66c:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+     670:	09 c0       	rjmp	.+18     	; 0x684 <main+0x13c>
+			}else{
+				UART_write8(UARTSENDMID);
+     672:	83 ea       	ldi	r24, 0xA3	; 163
+     674:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+				UART_write16(getMidDist(dist1,dist2));
+     678:	b7 01       	movw	r22, r14
+     67a:	c8 01       	movw	r24, r16
+     67c:	0e 94 48 00 	call	0x90	; 0x90 <getMidDist>
+     680:	0e 94 df 03 	call	0x7be	; 0x7be <UART_write16>
+			}
+			UART_write8(UARTSENDANGLE);
+     684:	84 ea       	ldi	r24, 0xA4	; 164
+     686:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+			UART_write8(currAng);
+     68a:	8c 2f       	mov	r24, r28
+     68c:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+			if(rtdir){
+     690:	dd 23       	and	r29, r29
+     692:	59 f0       	breq	.+22     	; 0x6aa <main+0x162>
+				if(currAng-step>0)
+     694:	20 91 0c 01 	lds	r18, 0x010C	; 0x80010c <step>
+     698:	8c 2f       	mov	r24, r28
+     69a:	90 e0       	ldi	r25, 0x00	; 0
+     69c:	82 1b       	sub	r24, r18
+     69e:	91 09       	sbc	r25, r1
+     6a0:	18 16       	cp	r1, r24
+     6a2:	19 06       	cpc	r1, r25
+     6a4:	0c f5       	brge	.+66     	; 0x6e8 <main+0x1a0>
+					currAng-=step;
+     6a6:	c2 1b       	sub	r28, r18
+     6a8:	0c c0       	rjmp	.+24     	; 0x6c2 <main+0x17a>
+				else
+					currAng=0;
+			}else{
+				if(currAng+step<180)
+     6aa:	20 91 0c 01 	lds	r18, 0x010C	; 0x80010c <step>
+     6ae:	82 2f       	mov	r24, r18
+     6b0:	90 e0       	ldi	r25, 0x00	; 0
+     6b2:	8c 0f       	add	r24, r28
+     6b4:	91 1d       	adc	r25, r1
+     6b6:	84 3b       	cpi	r24, 0xB4	; 180
+     6b8:	91 05       	cpc	r25, r1
+     6ba:	14 f4       	brge	.+4      	; 0x6c0 <main+0x178>
+					currAng+=step;
+     6bc:	c2 0f       	add	r28, r18
+     6be:	01 c0       	rjmp	.+2      	; 0x6c2 <main+0x17a>
+				else
+					currAng=180;
+     6c0:	c4 eb       	ldi	r28, 0xB4	; 180
+			}
+			if(currAng>=maxAng)
+     6c2:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <maxAng>
+     6c6:	c8 17       	cp	r28, r24
+     6c8:	08 f0       	brcs	.+2      	; 0x6cc <main+0x184>
+				rtdir=1;
+     6ca:	d1 e0       	ldi	r29, 0x01	; 1
+			if(currAng<=minAng)
+     6cc:	80 91 0b 01 	lds	r24, 0x010B	; 0x80010b <minAng>
+     6d0:	8c 17       	cp	r24, r28
+     6d2:	08 f0       	brcs	.+2      	; 0x6d6 <main+0x18e>
+				rtdir=0;
+     6d4:	db 2d       	mov	r29, r11
+			setServoAngle(currAng,1);
+     6d6:	61 e0       	ldi	r22, 0x01	; 1
+     6d8:	8c 2f       	mov	r24, r28
+     6da:	0e 94 8f 03 	call	0x71e	; 0x71e <setServoAngle>
+     6de:	76 cf       	rjmp	.-276    	; 0x5cc <main+0x84>
+		}else{
+			UART_write8(UARTDEVICESTART);
+     6e0:	80 ea       	ldi	r24, 0xA0	; 160
+     6e2:	0e 94 d7 03 	call	0x7ae	; 0x7ae <UART_write8>
+     6e6:	72 cf       	rjmp	.-284    	; 0x5cc <main+0x84>
+			UART_write8(currAng);
+			if(rtdir){
+				if(currAng-step>0)
+					currAng-=step;
+				else
+					currAng=0;
+     6e8:	c0 e0       	ldi	r28, 0x00	; 0
+					currAng=180;
+			}
+			if(currAng>=maxAng)
+				rtdir=1;
+			if(currAng<=minAng)
+				rtdir=0;
+     6ea:	db 2d       	mov	r29, r11
+     6ec:	f4 cf       	rjmp	.-24     	; 0x6d6 <main+0x18e>
+
+000006ee <servoInit>:
+#define RANGEPWMSERVO (HIGHPWMSERVO-LOWPWMSERVO)
+#define MIDPWMSERVO (LOWPWMSERVO+RANGEPWMSERVO/2)
+
+
+void servoInit(){
+	TCCR1A = (1<<COM1A1)|(1<<COM1B1) | (1<<WGM11);
+     6ee:	82 ea       	ldi	r24, 0xA2	; 162
+     6f0:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__DATA_REGION_ORIGIN__+0x20>
+	TCCR1B = (1<<WGM12)  | (1<<WGM13) | (1<<CS11);
+     6f4:	8a e1       	ldi	r24, 0x1A	; 26
+     6f6:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__DATA_REGION_ORIGIN__+0x21>
+	DDRB|=(1<<1)|(1<<2);
+     6fa:	84 b1       	in	r24, 0x04	; 4
+     6fc:	86 60       	ori	r24, 0x06	; 6
+     6fe:	84 b9       	out	0x04, r24	; 4
+	ICR1=FREQPWMSERVO;
+     700:	80 e4       	ldi	r24, 0x40	; 64
+     702:	9c e9       	ldi	r25, 0x9C	; 156
+     704:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__DATA_REGION_ORIGIN__+0x27>
+     708:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__DATA_REGION_ORIGIN__+0x26>
+	OCR1A=0;
+     70c:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+     710:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+	OCR1B=0;
+     714:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+     718:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
+     71c:	08 95       	ret
+
+0000071e <setServoAngle>:
+}
+void setServoAngle(uint8_t ang,uint8_t servoNum){
+     71e:	46 2f       	mov	r20, r22
+	uint16_t pwm=ang;
+	pwm=pwm*200/18+LOWPWMSERVO;
+     720:	98 ec       	ldi	r25, 0xC8	; 200
+     722:	89 9f       	mul	r24, r25
+     724:	90 01       	movw	r18, r0
+     726:	11 24       	eor	r1, r1
+     728:	af e8       	ldi	r26, 0x8F	; 143
+     72a:	b3 ee       	ldi	r27, 0xE3	; 227
+     72c:	0e 94 9d 0b 	call	0x173a	; 0x173a <__umulhisi3>
+     730:	92 95       	swap	r25
+     732:	82 95       	swap	r24
+     734:	8f 70       	andi	r24, 0x0F	; 15
+     736:	89 27       	eor	r24, r25
+     738:	9f 70       	andi	r25, 0x0F	; 15
+     73a:	89 27       	eor	r24, r25
+     73c:	80 53       	subi	r24, 0x30	; 48
+     73e:	98 4f       	sbci	r25, 0xF8	; 248
+	if(servoNum==0)
+     740:	41 11       	cpse	r20, r1
+     742:	05 c0       	rjmp	.+10     	; 0x74e <setServoAngle+0x30>
+		OCR1A=pwm;
+     744:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__DATA_REGION_ORIGIN__+0x29>
+     748:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__DATA_REGION_ORIGIN__+0x28>
+     74c:	08 95       	ret
+	else if(servoNum==1)
+     74e:	41 30       	cpi	r20, 0x01	; 1
+     750:	21 f4       	brne	.+8      	; 0x75a <setServoAngle+0x3c>
+		OCR1B=pwm;
+     752:	90 93 8b 00 	sts	0x008B, r25	; 0x80008b <__DATA_REGION_ORIGIN__+0x2b>
+     756:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__DATA_REGION_ORIGIN__+0x2a>
+     75a:	08 95       	ret
+
+0000075c <timeoutTimerInit>:
+#include "timeoutTimer.h"
+
+
+void timeoutTimerInit(){
+	TIMEOUTTIMERCONFB=(1<<CS22)|(0<<CS21)|(0<<CS20);
+     75c:	84 e0       	ldi	r24, 0x04	; 4
+     75e:	80 93 b1 00 	sts	0x00B1, r24	; 0x8000b1 <__DATA_REGION_ORIGIN__+0x51>
+	TIMEOUTTIMERINTERCONF|=1<<TOV2;
+     762:	e0 e7       	ldi	r30, 0x70	; 112
+     764:	f0 e0       	ldi	r31, 0x00	; 0
+     766:	80 81       	ld	r24, Z
+     768:	81 60       	ori	r24, 0x01	; 1
+     76a:	80 83       	st	Z, r24
+	didTimeout=0;
+     76c:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <didTimeout>
+	timoutTimerExp=0;
+     770:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <_edata+0x1>
+     774:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <_edata>
+	TIMEOUTTIMER=0;
+     778:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__DATA_REGION_ORIGIN__+0x52>
+     77c:	08 95       	ret
+
+0000077e <startTimeout>:
+}
+void startTimeout(uint8_t time){
+	didTimeout=0;
+     77e:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <didTimeout>
+	timoutTimerExp=time;
+     782:	90 e0       	ldi	r25, 0x00	; 0
+     784:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+     788:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+	TIMEOUTTIMER=0;
+     78c:	10 92 b2 00 	sts	0x00B2, r1	; 0x8000b2 <__DATA_REGION_ORIGIN__+0x52>
+     790:	08 95       	ret
+
+00000792 <UART_Init>:
+#include <util/delay.h>
+#define BAUD 9600L
+#define MYUBRR (F_CPU/16/BAUD-1)
+
+void UART_Init(){
+	UCSR0A = 0;						
+     792:	10 92 c0 00 	sts	0x00C0, r1	; 0x8000c0 <__DATA_REGION_ORIGIN__+0x60>
+	UCSR0B= (1<<RXCIE0)|(1<<RXEN0)|(1<<TXEN0);
+     796:	88 e9       	ldi	r24, 0x98	; 152
+     798:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__DATA_REGION_ORIGIN__+0x61>
+	UCSR0C = (3<<UCSZ00)| (0<<UCPOL0);
+     79c:	86 e0       	ldi	r24, 0x06	; 6
+     79e:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__DATA_REGION_ORIGIN__+0x62>
+	UBRR0H=(uint8_t)MYUBRR>>8;
+     7a2:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__DATA_REGION_ORIGIN__+0x65>
+	UBRR0L=(uint8_t)MYUBRR;
+     7a6:	87 e6       	ldi	r24, 0x67	; 103
+     7a8:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__DATA_REGION_ORIGIN__+0x64>
+     7ac:	08 95       	ret
+
+000007ae <UART_write8>:
+}
+void UART_write8(uint8_t data){
+	while ( !( UCSR0A & (1<<UDRE0)) );
+     7ae:	e0 ec       	ldi	r30, 0xC0	; 192
+     7b0:	f0 e0       	ldi	r31, 0x00	; 0
+     7b2:	90 81       	ld	r25, Z
+     7b4:	95 ff       	sbrs	r25, 5
+     7b6:	fd cf       	rjmp	.-6      	; 0x7b2 <UART_write8+0x4>
+	UDR0 =(uint8_t)(data);
+     7b8:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+     7bc:	08 95       	ret
+
+000007be <UART_write16>:
+}
+
+void UART_write16(uint16_t data){
+	while ( !( UCSR0A & (1<<UDRE0)) );
+     7be:	e0 ec       	ldi	r30, 0xC0	; 192
+     7c0:	f0 e0       	ldi	r31, 0x00	; 0
+     7c2:	20 81       	ld	r18, Z
+     7c4:	25 ff       	sbrs	r18, 5
+     7c6:	fd cf       	rjmp	.-6      	; 0x7c2 <UART_write16+0x4>
+	UDR0 =(uint8_t)(data>>8);
+     7c8:	90 93 c6 00 	sts	0x00C6, r25	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+	while ( !( UCSR0A & (1<<UDRE0)) );
+     7cc:	e0 ec       	ldi	r30, 0xC0	; 192
+     7ce:	f0 e0       	ldi	r31, 0x00	; 0
+     7d0:	90 81       	ld	r25, Z
+     7d2:	95 ff       	sbrs	r25, 5
+     7d4:	fd cf       	rjmp	.-6      	; 0x7d0 <UART_write16+0x12>
+	UDR0 =(uint8_t)(data);
+     7d6:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+     7da:	08 95       	ret
+
+000007dc <UART_read8>:
+}
+
+uint8_t UART_read8(){
+	while ( !(UCSR0A & (1<<RXC0)) );
+     7dc:	e0 ec       	ldi	r30, 0xC0	; 192
+     7de:	f0 e0       	ldi	r31, 0x00	; 0
+     7e0:	80 81       	ld	r24, Z
+     7e2:	88 23       	and	r24, r24
+     7e4:	ec f7       	brge	.-6      	; 0x7e0 <UART_read8+0x4>
+	return UDR0;
+     7e6:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__DATA_REGION_ORIGIN__+0x66>
+}
+     7ea:	08 95       	ret
+
+000007ec <VL53L0X_setSignalRateLimit>:
+	uint16_t range = I2C_readReg16(VL53L0XADDRESS,RESULT_RANGE_STATUS + 10);
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CLEAR, 0x01);
+
+	return range;
+}
+     7ec:	cf 92       	push	r12
+     7ee:	df 92       	push	r13
+     7f0:	ef 92       	push	r14
+     7f2:	ff 92       	push	r15
+     7f4:	6b 01       	movw	r12, r22
+     7f6:	7c 01       	movw	r14, r24
+     7f8:	20 e0       	ldi	r18, 0x00	; 0
+     7fa:	30 e0       	ldi	r19, 0x00	; 0
+     7fc:	a9 01       	movw	r20, r18
+     7fe:	0e 94 23 0a 	call	0x1446	; 0x1446 <__cmpsf2>
+     802:	88 23       	and	r24, r24
+     804:	dc f0       	brlt	.+54     	; 0x83c <VL53L0X_setSignalRateLimit+0x50>
+     806:	28 eb       	ldi	r18, 0xB8	; 184
+     808:	3e ef       	ldi	r19, 0xFE	; 254
+     80a:	4f ef       	ldi	r20, 0xFF	; 255
+     80c:	53 e4       	ldi	r21, 0x43	; 67
+     80e:	c7 01       	movw	r24, r14
+     810:	b6 01       	movw	r22, r12
+     812:	0e 94 e1 0a 	call	0x15c2	; 0x15c2 <__gesf2>
+     816:	18 16       	cp	r1, r24
+     818:	9c f0       	brlt	.+38     	; 0x840 <VL53L0X_setSignalRateLimit+0x54>
+     81a:	20 e0       	ldi	r18, 0x00	; 0
+     81c:	30 e0       	ldi	r19, 0x00	; 0
+     81e:	40 e0       	ldi	r20, 0x00	; 0
+     820:	53 e4       	ldi	r21, 0x43	; 67
+     822:	c7 01       	movw	r24, r14
+     824:	b6 01       	movw	r22, r12
+     826:	0e 94 e6 0a 	call	0x15cc	; 0x15cc <__mulsf3>
+     82a:	0e 94 28 0a 	call	0x1450	; 0x1450 <__fixunssfsi>
+     82e:	ab 01       	movw	r20, r22
+     830:	64 e4       	ldi	r22, 0x44	; 68
+     832:	89 e2       	ldi	r24, 0x29	; 41
+     834:	0e 94 7f 01 	call	0x2fe	; 0x2fe <I2C_writeReg16>
+     838:	81 e0       	ldi	r24, 0x01	; 1
+     83a:	03 c0       	rjmp	.+6      	; 0x842 <VL53L0X_setSignalRateLimit+0x56>
+     83c:	80 e0       	ldi	r24, 0x00	; 0
+     83e:	01 c0       	rjmp	.+2      	; 0x842 <VL53L0X_setSignalRateLimit+0x56>
+     840:	80 e0       	ldi	r24, 0x00	; 0
+     842:	ff 90       	pop	r15
+     844:	ef 90       	pop	r14
+     846:	df 90       	pop	r13
+     848:	cf 90       	pop	r12
+     84a:	08 95       	ret
+
+0000084c <VL53L0X_getVcselPulsePeriod>:
+     84c:	81 11       	cpse	r24, r1
+     84e:	07 c0       	rjmp	.+14     	; 0x85e <VL53L0X_getVcselPulsePeriod+0x12>
+     850:	60 e5       	ldi	r22, 0x50	; 80
+     852:	89 e2       	ldi	r24, 0x29	; 41
+     854:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     858:	8f 5f       	subi	r24, 0xFF	; 255
+     85a:	88 0f       	add	r24, r24
+     85c:	08 95       	ret
+     85e:	81 30       	cpi	r24, 0x01	; 1
+     860:	39 f4       	brne	.+14     	; 0x870 <VL53L0X_getVcselPulsePeriod+0x24>
+     862:	60 e7       	ldi	r22, 0x70	; 112
+     864:	89 e2       	ldi	r24, 0x29	; 41
+     866:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     86a:	8f 5f       	subi	r24, 0xFF	; 255
+     86c:	88 0f       	add	r24, r24
+     86e:	08 95       	ret
+     870:	8f ef       	ldi	r24, 0xFF	; 255
+     872:	08 95       	ret
+
+00000874 <VL53L0X_askRangeSingleMillimeters>:
+// Performs a single-shot range measurement and returns the reading in
+// millimeters
+// based on VL53L0X_PerformSingleRangingMeasurement()
+void VL53L0X_askRangeSingleMillimeters()
+{
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x01);
+     874:	41 e0       	ldi	r20, 0x01	; 1
+     876:	60 e8       	ldi	r22, 0x80	; 128
+     878:	89 e2       	ldi	r24, 0x29	; 41
+     87a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	if(I2C_err)
+     87e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     882:	81 11       	cpse	r24, r1
+     884:	24 c0       	rjmp	.+72     	; 0x8ce <VL53L0X_askRangeSingleMillimeters+0x5a>
+		return;
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+     886:	41 e0       	ldi	r20, 0x01	; 1
+     888:	6f ef       	ldi	r22, 0xFF	; 255
+     88a:	89 e2       	ldi	r24, 0x29	; 41
+     88c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x00);
+     890:	40 e0       	ldi	r20, 0x00	; 0
+     892:	60 e0       	ldi	r22, 0x00	; 0
+     894:	89 e2       	ldi	r24, 0x29	; 41
+     896:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x91, VL53L0X_stop_variable);
+     89a:	40 91 09 01 	lds	r20, 0x0109	; 0x800109 <VL53L0X_stop_variable>
+     89e:	61 e9       	ldi	r22, 0x91	; 145
+     8a0:	89 e2       	ldi	r24, 0x29	; 41
+     8a2:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x01);
+     8a6:	41 e0       	ldi	r20, 0x01	; 1
+     8a8:	60 e0       	ldi	r22, 0x00	; 0
+     8aa:	89 e2       	ldi	r24, 0x29	; 41
+     8ac:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+     8b0:	40 e0       	ldi	r20, 0x00	; 0
+     8b2:	6f ef       	ldi	r22, 0xFF	; 255
+     8b4:	89 e2       	ldi	r24, 0x29	; 41
+     8b6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x00);
+     8ba:	40 e0       	ldi	r20, 0x00	; 0
+     8bc:	60 e8       	ldi	r22, 0x80	; 128
+     8be:	89 e2       	ldi	r24, 0x29	; 41
+     8c0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,SYSRANGE_START, 0x01);
+     8c4:	41 e0       	ldi	r20, 0x01	; 1
+     8c6:	60 e0       	ldi	r22, 0x00	; 0
+     8c8:	89 e2       	ldi	r24, 0x29	; 41
+     8ca:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+     8ce:	08 95       	ret
+
+000008d0 <VL53L0X_readRangeSingleMillimeters>:
+}
+uint16_t VL53L0X_readRangeSingleMillimeters()
+{
+     8d0:	cf 93       	push	r28
+     8d2:	df 93       	push	r29
+	// "Wait until start bit has been cleared"
+	while ((I2C_readReg(VL53L0XADDRESS,SYSRANGE_START) & 0x01)&& !I2C_err);
+     8d4:	60 e0       	ldi	r22, 0x00	; 0
+     8d6:	89 e2       	ldi	r24, 0x29	; 41
+     8d8:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     8dc:	80 ff       	sbrs	r24, 0
+     8de:	07 c0       	rjmp	.+14     	; 0x8ee <VL53L0X_readRangeSingleMillimeters+0x1e>
+     8e0:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     8e4:	88 23       	and	r24, r24
+     8e6:	b1 f3       	breq	.-20     	; 0x8d4 <VL53L0X_readRangeSingleMillimeters+0x4>
+	if(I2C_err)
+		return 0xFFFF;
+     8e8:	8f ef       	ldi	r24, 0xFF	; 255
+     8ea:	9f ef       	ldi	r25, 0xFF	; 255
+     8ec:	1e c0       	rjmp	.+60     	; 0x92a <__stack+0x2b>
+}
+uint16_t VL53L0X_readRangeSingleMillimeters()
+{
+	// "Wait until start bit has been cleared"
+	while ((I2C_readReg(VL53L0XADDRESS,SYSRANGE_START) & 0x01)&& !I2C_err);
+	if(I2C_err)
+     8ee:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     8f2:	81 11       	cpse	r24, r1
+     8f4:	18 c0       	rjmp	.+48     	; 0x926 <__stack+0x27>
+		return 0xFFFF;
+	while (((I2C_readReg(VL53L0XADDRESS,RESULT_INTERRUPT_STATUS) & 0x07) == 0)&& !I2C_err);
+     8f6:	63 e1       	ldi	r22, 0x13	; 19
+     8f8:	89 e2       	ldi	r24, 0x29	; 41
+     8fa:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     8fe:	87 70       	andi	r24, 0x07	; 7
+     900:	21 f4       	brne	.+8      	; 0x90a <__stack+0xb>
+     902:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     906:	88 23       	and	r24, r24
+     908:	b1 f3       	breq	.-20     	; 0x8f6 <VL53L0X_readRangeSingleMillimeters+0x26>
+	// assumptions: Linearity Corrective Gain is 1000 (default);
+	// fractional ranging is not enabled
+	uint16_t range = I2C_readReg16(VL53L0XADDRESS,RESULT_RANGE_STATUS + 10);
+     90a:	6e e1       	ldi	r22, 0x1E	; 30
+     90c:	89 e2       	ldi	r24, 0x29	; 41
+     90e:	0e 94 a0 01 	call	0x340	; 0x340 <I2C_readReg16>
+     912:	d8 2f       	mov	r29, r24
+     914:	c9 2f       	mov	r28, r25
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CLEAR, 0x01);
+     916:	41 e0       	ldi	r20, 0x01	; 1
+     918:	6b e0       	ldi	r22, 0x0B	; 11
+     91a:	89 e2       	ldi	r24, 0x29	; 41
+     91c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	return range;
+     920:	8d 2f       	mov	r24, r29
+     922:	9c 2f       	mov	r25, r28
+     924:	02 c0       	rjmp	.+4      	; 0x92a <__stack+0x2b>
+uint16_t VL53L0X_readRangeSingleMillimeters()
+{
+	// "Wait until start bit has been cleared"
+	while ((I2C_readReg(VL53L0XADDRESS,SYSRANGE_START) & 0x01)&& !I2C_err);
+	if(I2C_err)
+		return 0xFFFF;
+     926:	8f ef       	ldi	r24, 0xFF	; 255
+     928:	9f ef       	ldi	r25, 0xFF	; 255
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CLEAR, 0x01);
+
+	return range;
+
+}
+     92a:	df 91       	pop	r29
+     92c:	cf 91       	pop	r28
+     92e:	08 95       	ret
+
+00000930 <VL53L0X_getSpadInfo>:
+
+// Get reference SPAD (single photon avalanche diode) count and type
+// based on VL53L0X_get_info_from_device(),
+// but only gets reference SPAD count and type
+uint8_t VL53L0X_getSpadInfo(uint8_t * count, uint8_t * type_is_aperture)
+{
+     930:	0f 93       	push	r16
+     932:	1f 93       	push	r17
+     934:	cf 93       	push	r28
+     936:	df 93       	push	r29
+     938:	8c 01       	movw	r16, r24
+     93a:	eb 01       	movw	r28, r22
+	uint8_t tmp;
+
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x01);
+     93c:	41 e0       	ldi	r20, 0x01	; 1
+     93e:	60 e8       	ldi	r22, 0x80	; 128
+     940:	89 e2       	ldi	r24, 0x29	; 41
+     942:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+     946:	41 e0       	ldi	r20, 0x01	; 1
+     948:	6f ef       	ldi	r22, 0xFF	; 255
+     94a:	89 e2       	ldi	r24, 0x29	; 41
+     94c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x00);
+     950:	40 e0       	ldi	r20, 0x00	; 0
+     952:	60 e0       	ldi	r22, 0x00	; 0
+     954:	89 e2       	ldi	r24, 0x29	; 41
+     956:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x06);
+     95a:	46 e0       	ldi	r20, 0x06	; 6
+     95c:	6f ef       	ldi	r22, 0xFF	; 255
+     95e:	89 e2       	ldi	r24, 0x29	; 41
+     960:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x83, I2C_readReg(VL53L0XADDRESS,0x83) | 0x04);
+     964:	63 e8       	ldi	r22, 0x83	; 131
+     966:	89 e2       	ldi	r24, 0x29	; 41
+     968:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     96c:	48 2f       	mov	r20, r24
+     96e:	44 60       	ori	r20, 0x04	; 4
+     970:	63 e8       	ldi	r22, 0x83	; 131
+     972:	89 e2       	ldi	r24, 0x29	; 41
+     974:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x07);
+     978:	47 e0       	ldi	r20, 0x07	; 7
+     97a:	6f ef       	ldi	r22, 0xFF	; 255
+     97c:	89 e2       	ldi	r24, 0x29	; 41
+     97e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x81, 0x01);
+     982:	41 e0       	ldi	r20, 0x01	; 1
+     984:	61 e8       	ldi	r22, 0x81	; 129
+     986:	89 e2       	ldi	r24, 0x29	; 41
+     988:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x01);
+     98c:	41 e0       	ldi	r20, 0x01	; 1
+     98e:	60 e8       	ldi	r22, 0x80	; 128
+     990:	89 e2       	ldi	r24, 0x29	; 41
+     992:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0x94, 0x6b);
+     996:	4b e6       	ldi	r20, 0x6B	; 107
+     998:	64 e9       	ldi	r22, 0x94	; 148
+     99a:	89 e2       	ldi	r24, 0x29	; 41
+     99c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x83, 0x00);
+     9a0:	40 e0       	ldi	r20, 0x00	; 0
+     9a2:	63 e8       	ldi	r22, 0x83	; 131
+     9a4:	89 e2       	ldi	r24, 0x29	; 41
+     9a6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	while ((I2C_readReg(VL53L0XADDRESS,0x83) == 0x00)&& !I2C_err);
+     9aa:	63 e8       	ldi	r22, 0x83	; 131
+     9ac:	89 e2       	ldi	r24, 0x29	; 41
+     9ae:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     9b2:	81 11       	cpse	r24, r1
+     9b4:	04 c0       	rjmp	.+8      	; 0x9be <VL53L0X_getSpadInfo+0x8e>
+     9b6:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     9ba:	88 23       	and	r24, r24
+     9bc:	b1 f3       	breq	.-20     	; 0x9aa <VL53L0X_getSpadInfo+0x7a>
+	I2C_writeReg(VL53L0XADDRESS,0x83, 0x01);
+     9be:	41 e0       	ldi	r20, 0x01	; 1
+     9c0:	63 e8       	ldi	r22, 0x83	; 131
+     9c2:	89 e2       	ldi	r24, 0x29	; 41
+     9c4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	tmp = I2C_readReg(VL53L0XADDRESS,0x92);
+     9c8:	62 e9       	ldi	r22, 0x92	; 146
+     9ca:	89 e2       	ldi	r24, 0x29	; 41
+     9cc:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+
+	*count = tmp & 0x7f;
+     9d0:	98 2f       	mov	r25, r24
+     9d2:	9f 77       	andi	r25, 0x7F	; 127
+     9d4:	f8 01       	movw	r30, r16
+     9d6:	90 83       	st	Z, r25
+	*type_is_aperture = (tmp >> 7) & 0x01;
+     9d8:	88 1f       	adc	r24, r24
+     9da:	88 27       	eor	r24, r24
+     9dc:	88 1f       	adc	r24, r24
+     9de:	88 83       	st	Y, r24
+
+	I2C_writeReg(VL53L0XADDRESS,0x81, 0x00);
+     9e0:	40 e0       	ldi	r20, 0x00	; 0
+     9e2:	61 e8       	ldi	r22, 0x81	; 129
+     9e4:	89 e2       	ldi	r24, 0x29	; 41
+     9e6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x06);
+     9ea:	46 e0       	ldi	r20, 0x06	; 6
+     9ec:	6f ef       	ldi	r22, 0xFF	; 255
+     9ee:	89 e2       	ldi	r24, 0x29	; 41
+     9f0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x83, I2C_readReg(VL53L0XADDRESS,0x83)  & ~0x04);
+     9f4:	63 e8       	ldi	r22, 0x83	; 131
+     9f6:	89 e2       	ldi	r24, 0x29	; 41
+     9f8:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     9fc:	48 2f       	mov	r20, r24
+     9fe:	4b 7f       	andi	r20, 0xFB	; 251
+     a00:	63 e8       	ldi	r22, 0x83	; 131
+     a02:	89 e2       	ldi	r24, 0x29	; 41
+     a04:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+     a08:	41 e0       	ldi	r20, 0x01	; 1
+     a0a:	6f ef       	ldi	r22, 0xFF	; 255
+     a0c:	89 e2       	ldi	r24, 0x29	; 41
+     a0e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x01);
+     a12:	41 e0       	ldi	r20, 0x01	; 1
+     a14:	60 e0       	ldi	r22, 0x00	; 0
+     a16:	89 e2       	ldi	r24, 0x29	; 41
+     a18:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+     a1c:	40 e0       	ldi	r20, 0x00	; 0
+     a1e:	6f ef       	ldi	r22, 0xFF	; 255
+     a20:	89 e2       	ldi	r24, 0x29	; 41
+     a22:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x00);
+     a26:	40 e0       	ldi	r20, 0x00	; 0
+     a28:	60 e8       	ldi	r22, 0x80	; 128
+     a2a:	89 e2       	ldi	r24, 0x29	; 41
+     a2c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	return 1;
+}
+     a30:	81 e0       	ldi	r24, 0x01	; 1
+     a32:	df 91       	pop	r29
+     a34:	cf 91       	pop	r28
+     a36:	1f 91       	pop	r17
+     a38:	0f 91       	pop	r16
+     a3a:	08 95       	ret
+
+00000a3c <VL53L0X_getSequenceStepEnables>:
+
+// Get sequence step enables
+void VL53L0X_getSequenceStepEnables(struct VL53L0X_SequenceStepEnables * enables)
+{
+     a3c:	cf 93       	push	r28
+     a3e:	df 93       	push	r29
+     a40:	ec 01       	movw	r28, r24
+	uint8_t sequence_config = I2C_readReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG);
+     a42:	61 e0       	ldi	r22, 0x01	; 1
+     a44:	89 e2       	ldi	r24, 0x29	; 41
+     a46:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+
+	enables->tcc          = (sequence_config >> 4) & 0x1;
+     a4a:	84 fb       	bst	r24, 4
+     a4c:	99 27       	eor	r25, r25
+     a4e:	90 f9       	bld	r25, 0
+     a50:	98 83       	st	Y, r25
+	enables->dss          = (sequence_config >> 3) & 0x1;
+     a52:	83 fb       	bst	r24, 3
+     a54:	99 27       	eor	r25, r25
+     a56:	90 f9       	bld	r25, 0
+     a58:	9a 83       	std	Y+2, r25	; 0x02
+	enables->msrc         = (sequence_config >> 2) & 0x1;
+     a5a:	82 fb       	bst	r24, 2
+     a5c:	99 27       	eor	r25, r25
+     a5e:	90 f9       	bld	r25, 0
+     a60:	99 83       	std	Y+1, r25	; 0x01
+	enables->pre_range    = (sequence_config >> 6) & 0x1;
+     a62:	86 fb       	bst	r24, 6
+     a64:	99 27       	eor	r25, r25
+     a66:	90 f9       	bld	r25, 0
+     a68:	9b 83       	std	Y+3, r25	; 0x03
+	enables->final_range  = (sequence_config >> 7) & 0x1;
+     a6a:	88 1f       	adc	r24, r24
+     a6c:	88 27       	eor	r24, r24
+     a6e:	88 1f       	adc	r24, r24
+     a70:	8c 83       	std	Y+4, r24	; 0x04
+}
+     a72:	df 91       	pop	r29
+     a74:	cf 91       	pop	r28
+     a76:	08 95       	ret
+
+00000a78 <VL53L0X_decodeTimeout>:
+// Note: the original function returned a uint32_t, but the return value is
+// always stored in a uint16_t.
+uint16_t VL53L0X_decodeTimeout(uint16_t reg_val)
+{
+	// format: "(LSByte * 2^MSByte) + 1"
+	return (uint16_t)((reg_val & 0x00FF) <<
+     a78:	9c 01       	movw	r18, r24
+     a7a:	33 27       	eor	r19, r19
+     a7c:	a9 01       	movw	r20, r18
+     a7e:	02 c0       	rjmp	.+4      	; 0xa84 <VL53L0X_decodeTimeout+0xc>
+     a80:	44 0f       	add	r20, r20
+     a82:	55 1f       	adc	r21, r21
+     a84:	9a 95       	dec	r25
+     a86:	e2 f7       	brpl	.-8      	; 0xa80 <VL53L0X_decodeTimeout+0x8>
+     a88:	ca 01       	movw	r24, r20
+	(uint16_t)((reg_val & 0xFF00) >> 8)) + 1;
+}
+     a8a:	01 96       	adiw	r24, 0x01	; 1
+     a8c:	08 95       	ret
+
+00000a8e <VL53L0X_encodeTimeout>:
+
+// Encode sequence step timeout register value from timeout in MCLKs
+// based on VL53L0X_encode_timeout()
+uint16_t VL53L0X_encodeTimeout(uint32_t timeout_mclks)
+{
+     a8e:	0f 93       	push	r16
+     a90:	1f 93       	push	r17
+	// format: "(LSByte * 2^MSByte) + 1"
+
+	uint32_t ls_byte = 0;
+	uint16_t ms_byte = 0;
+
+	if (timeout_mclks > 0)
+     a92:	61 15       	cp	r22, r1
+     a94:	71 05       	cpc	r23, r1
+     a96:	81 05       	cpc	r24, r1
+     a98:	91 05       	cpc	r25, r1
+     a9a:	21 f1       	breq	.+72     	; 0xae4 <VL53L0X_encodeTimeout+0x56>
+	{
+		ls_byte = timeout_mclks - 1;
+     a9c:	ab 01       	movw	r20, r22
+     a9e:	bc 01       	movw	r22, r24
+     aa0:	41 50       	subi	r20, 0x01	; 1
+     aa2:	51 09       	sbc	r21, r1
+     aa4:	61 09       	sbc	r22, r1
+     aa6:	71 09       	sbc	r23, r1
+
+		while ((ls_byte & 0xFFFFFF00) > 0)
+     aa8:	db 01       	movw	r26, r22
+     aaa:	ca 01       	movw	r24, r20
+     aac:	88 27       	eor	r24, r24
+     aae:	89 2b       	or	r24, r25
+     ab0:	8a 2b       	or	r24, r26
+     ab2:	8b 2b       	or	r24, r27
+     ab4:	79 f0       	breq	.+30     	; 0xad4 <VL53L0X_encodeTimeout+0x46>
+     ab6:	80 e0       	ldi	r24, 0x00	; 0
+     ab8:	90 e0       	ldi	r25, 0x00	; 0
+		{
+			ls_byte >>= 1;
+     aba:	76 95       	lsr	r23
+     abc:	67 95       	ror	r22
+     abe:	57 95       	ror	r21
+     ac0:	47 95       	ror	r20
+			ms_byte++;
+     ac2:	01 96       	adiw	r24, 0x01	; 1
+
+	if (timeout_mclks > 0)
+	{
+		ls_byte = timeout_mclks - 1;
+
+		while ((ls_byte & 0xFFFFFF00) > 0)
+     ac4:	8a 01       	movw	r16, r20
+     ac6:	9b 01       	movw	r18, r22
+     ac8:	00 27       	eor	r16, r16
+     aca:	01 2b       	or	r16, r17
+     acc:	02 2b       	or	r16, r18
+     ace:	03 2b       	or	r16, r19
+     ad0:	a1 f7       	brne	.-24     	; 0xaba <VL53L0X_encodeTimeout+0x2c>
+     ad2:	02 c0       	rjmp	.+4      	; 0xad8 <VL53L0X_encodeTimeout+0x4a>
+uint16_t VL53L0X_encodeTimeout(uint32_t timeout_mclks)
+{
+	// format: "(LSByte * 2^MSByte) + 1"
+
+	uint32_t ls_byte = 0;
+	uint16_t ms_byte = 0;
+     ad4:	80 e0       	ldi	r24, 0x00	; 0
+     ad6:	90 e0       	ldi	r25, 0x00	; 0
+		{
+			ls_byte >>= 1;
+			ms_byte++;
+		}
+
+		return (ms_byte << 8) | (ls_byte & 0xFF);
+     ad8:	98 2f       	mov	r25, r24
+     ada:	88 27       	eor	r24, r24
+     adc:	55 27       	eor	r21, r21
+     ade:	84 2b       	or	r24, r20
+     ae0:	95 2b       	or	r25, r21
+     ae2:	02 c0       	rjmp	.+4      	; 0xae8 <VL53L0X_encodeTimeout+0x5a>
+	}
+	else { return 0; }
+     ae4:	80 e0       	ldi	r24, 0x00	; 0
+     ae6:	90 e0       	ldi	r25, 0x00	; 0
+}
+     ae8:	1f 91       	pop	r17
+     aea:	0f 91       	pop	r16
+     aec:	08 95       	ret
+
+00000aee <VL53L0X_timeoutMclksToMicroseconds>:
+
+// Convert sequence step timeout from MCLKs to microseconds with given VCSEL period in PCLKs
+// based on VL53L0X_calc_timeout_us()
+uint32_t VL53L0X_timeoutMclksToMicroseconds(uint16_t timeout_period_mclks, uint8_t vcsel_period_pclks)
+{
+     aee:	cf 92       	push	r12
+     af0:	df 92       	push	r13
+     af2:	ef 92       	push	r14
+     af4:	ff 92       	push	r15
+     af6:	cf 93       	push	r28
+     af8:	df 93       	push	r29
+     afa:	ec 01       	movw	r28, r24
+	uint32_t macro_period_ns = calcMacroPeriod(vcsel_period_pclks);
+
+	return ((timeout_period_mclks * macro_period_ns) + 500) / 1000;
+     afc:	a6 2f       	mov	r26, r22
+     afe:	b0 e0       	ldi	r27, 0x00	; 0
+     b00:	20 e0       	ldi	r18, 0x00	; 0
+     b02:	3f e2       	ldi	r19, 0x2F	; 47
+     b04:	4a e3       	ldi	r20, 0x3A	; 58
+     b06:	50 e0       	ldi	r21, 0x00	; 0
+     b08:	0e 94 ac 0b 	call	0x1758	; 0x1758 <__muluhisi3>
+     b0c:	6c 50       	subi	r22, 0x0C	; 12
+     b0e:	7e 4f       	sbci	r23, 0xFE	; 254
+     b10:	8f 4f       	sbci	r24, 0xFF	; 255
+     b12:	9f 4f       	sbci	r25, 0xFF	; 255
+     b14:	0f 2e       	mov	r0, r31
+     b16:	f8 ee       	ldi	r31, 0xE8	; 232
+     b18:	cf 2e       	mov	r12, r31
+     b1a:	f3 e0       	ldi	r31, 0x03	; 3
+     b1c:	df 2e       	mov	r13, r31
+     b1e:	e1 2c       	mov	r14, r1
+     b20:	f1 2c       	mov	r15, r1
+     b22:	f0 2d       	mov	r31, r0
+     b24:	a7 01       	movw	r20, r14
+     b26:	96 01       	movw	r18, r12
+     b28:	0e 94 7b 0b 	call	0x16f6	; 0x16f6 <__udivmodsi4>
+     b2c:	de 01       	movw	r26, r28
+     b2e:	0e 94 ac 0b 	call	0x1758	; 0x1758 <__muluhisi3>
+     b32:	6c 50       	subi	r22, 0x0C	; 12
+     b34:	7e 4f       	sbci	r23, 0xFE	; 254
+     b36:	8f 4f       	sbci	r24, 0xFF	; 255
+     b38:	9f 4f       	sbci	r25, 0xFF	; 255
+     b3a:	a7 01       	movw	r20, r14
+     b3c:	96 01       	movw	r18, r12
+     b3e:	0e 94 7b 0b 	call	0x16f6	; 0x16f6 <__udivmodsi4>
+}
+     b42:	ca 01       	movw	r24, r20
+     b44:	b9 01       	movw	r22, r18
+     b46:	df 91       	pop	r29
+     b48:	cf 91       	pop	r28
+     b4a:	ff 90       	pop	r15
+     b4c:	ef 90       	pop	r14
+     b4e:	df 90       	pop	r13
+     b50:	cf 90       	pop	r12
+     b52:	08 95       	ret
+
+00000b54 <VL53L0X_getSequenceStepTimeouts>:
+// Get sequence step timeouts
+// based on get_sequence_step_timeout(),
+// but gets all timeouts instead of just the requested one, and also stores
+// intermediate values
+void VL53L0X_getSequenceStepTimeouts(struct VL53L0X_SequenceStepEnables const * enables,struct VL53L0X_SequenceStepTimeouts * timeouts)
+{
+     b54:	0f 93       	push	r16
+     b56:	1f 93       	push	r17
+     b58:	cf 93       	push	r28
+     b5a:	df 93       	push	r29
+     b5c:	8c 01       	movw	r16, r24
+     b5e:	eb 01       	movw	r28, r22
+	timeouts->pre_range_vcsel_period_pclks = VL53L0X_getVcselPulsePeriod(VcselPeriodPreRange);
+     b60:	80 e0       	ldi	r24, 0x00	; 0
+     b62:	0e 94 26 04 	call	0x84c	; 0x84c <VL53L0X_getVcselPulsePeriod>
+     b66:	90 e0       	ldi	r25, 0x00	; 0
+     b68:	99 83       	std	Y+1, r25	; 0x01
+     b6a:	88 83       	st	Y, r24
+
+	timeouts->msrc_dss_tcc_mclks = I2C_readReg(VL53L0XADDRESS,MSRC_CONFIG_TIMEOUT_MACROP) + 1;
+     b6c:	66 e4       	ldi	r22, 0x46	; 70
+     b6e:	89 e2       	ldi	r24, 0x29	; 41
+     b70:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     b74:	90 e0       	ldi	r25, 0x00	; 0
+     b76:	01 96       	adiw	r24, 0x01	; 1
+     b78:	9d 83       	std	Y+5, r25	; 0x05
+     b7a:	8c 83       	std	Y+4, r24	; 0x04
+	timeouts->msrc_dss_tcc_us =
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->msrc_dss_tcc_mclks,
+     b7c:	68 81       	ld	r22, Y
+     b7e:	0e 94 77 05 	call	0xaee	; 0xaee <VL53L0X_timeoutMclksToMicroseconds>
+void VL53L0X_getSequenceStepTimeouts(struct VL53L0X_SequenceStepEnables const * enables,struct VL53L0X_SequenceStepTimeouts * timeouts)
+{
+	timeouts->pre_range_vcsel_period_pclks = VL53L0X_getVcselPulsePeriod(VcselPeriodPreRange);
+
+	timeouts->msrc_dss_tcc_mclks = I2C_readReg(VL53L0XADDRESS,MSRC_CONFIG_TIMEOUT_MACROP) + 1;
+	timeouts->msrc_dss_tcc_us =
+     b82:	6a 87       	std	Y+10, r22	; 0x0a
+     b84:	7b 87       	std	Y+11, r23	; 0x0b
+     b86:	8c 87       	std	Y+12, r24	; 0x0c
+     b88:	9d 87       	std	Y+13, r25	; 0x0d
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->msrc_dss_tcc_mclks,
+	timeouts->pre_range_vcsel_period_pclks);
+
+	timeouts->pre_range_mclks =	VL53L0X_decodeTimeout(I2C_readReg16(VL53L0XADDRESS,PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI));
+     b8a:	61 e5       	ldi	r22, 0x51	; 81
+     b8c:	89 e2       	ldi	r24, 0x29	; 41
+     b8e:	0e 94 a0 01 	call	0x340	; 0x340 <I2C_readReg16>
+     b92:	0e 94 3c 05 	call	0xa78	; 0xa78 <VL53L0X_decodeTimeout>
+     b96:	9f 83       	std	Y+7, r25	; 0x07
+     b98:	8e 83       	std	Y+6, r24	; 0x06
+	timeouts->pre_range_us =
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->pre_range_mclks,
+     b9a:	68 81       	ld	r22, Y
+     b9c:	0e 94 77 05 	call	0xaee	; 0xaee <VL53L0X_timeoutMclksToMicroseconds>
+	timeouts->msrc_dss_tcc_us =
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->msrc_dss_tcc_mclks,
+	timeouts->pre_range_vcsel_period_pclks);
+
+	timeouts->pre_range_mclks =	VL53L0X_decodeTimeout(I2C_readReg16(VL53L0XADDRESS,PRE_RANGE_CONFIG_TIMEOUT_MACROP_HI));
+	timeouts->pre_range_us =
+     ba0:	6e 87       	std	Y+14, r22	; 0x0e
+     ba2:	7f 87       	std	Y+15, r23	; 0x0f
+     ba4:	88 8b       	std	Y+16, r24	; 0x10
+     ba6:	99 8b       	std	Y+17, r25	; 0x11
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->pre_range_mclks,
+	timeouts->pre_range_vcsel_period_pclks);
+
+	timeouts->final_range_vcsel_period_pclks = VL53L0X_getVcselPulsePeriod(VcselPeriodFinalRange);
+     ba8:	81 e0       	ldi	r24, 0x01	; 1
+     baa:	0e 94 26 04 	call	0x84c	; 0x84c <VL53L0X_getVcselPulsePeriod>
+     bae:	90 e0       	ldi	r25, 0x00	; 0
+     bb0:	9b 83       	std	Y+3, r25	; 0x03
+     bb2:	8a 83       	std	Y+2, r24	; 0x02
+
+	timeouts->final_range_mclks =
+	VL53L0X_decodeTimeout(I2C_readReg16(VL53L0XADDRESS,FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI));
+     bb4:	61 e7       	ldi	r22, 0x71	; 113
+     bb6:	89 e2       	ldi	r24, 0x29	; 41
+     bb8:	0e 94 a0 01 	call	0x340	; 0x340 <I2C_readReg16>
+     bbc:	0e 94 3c 05 	call	0xa78	; 0xa78 <VL53L0X_decodeTimeout>
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->pre_range_mclks,
+	timeouts->pre_range_vcsel_period_pclks);
+
+	timeouts->final_range_vcsel_period_pclks = VL53L0X_getVcselPulsePeriod(VcselPeriodFinalRange);
+
+	timeouts->final_range_mclks =
+     bc0:	99 87       	std	Y+9, r25	; 0x09
+     bc2:	88 87       	std	Y+8, r24	; 0x08
+	VL53L0X_decodeTimeout(I2C_readReg16(VL53L0XADDRESS,FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI));
+
+	if (enables->pre_range)
+     bc4:	f8 01       	movw	r30, r16
+     bc6:	23 81       	ldd	r18, Z+3	; 0x03
+     bc8:	22 23       	and	r18, r18
+     bca:	31 f0       	breq	.+12     	; 0xbd8 <VL53L0X_getSequenceStepTimeouts+0x84>
+	{
+		timeouts->final_range_mclks -= timeouts->pre_range_mclks;
+     bcc:	2e 81       	ldd	r18, Y+6	; 0x06
+     bce:	3f 81       	ldd	r19, Y+7	; 0x07
+     bd0:	82 1b       	sub	r24, r18
+     bd2:	93 0b       	sbc	r25, r19
+     bd4:	99 87       	std	Y+9, r25	; 0x09
+     bd6:	88 87       	std	Y+8, r24	; 0x08
+	}
+
+	timeouts->final_range_us =
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->final_range_mclks,
+     bd8:	6a 81       	ldd	r22, Y+2	; 0x02
+     bda:	88 85       	ldd	r24, Y+8	; 0x08
+     bdc:	99 85       	ldd	r25, Y+9	; 0x09
+     bde:	0e 94 77 05 	call	0xaee	; 0xaee <VL53L0X_timeoutMclksToMicroseconds>
+	if (enables->pre_range)
+	{
+		timeouts->final_range_mclks -= timeouts->pre_range_mclks;
+	}
+
+	timeouts->final_range_us =
+     be2:	6a 8b       	std	Y+18, r22	; 0x12
+     be4:	7b 8b       	std	Y+19, r23	; 0x13
+     be6:	8c 8b       	std	Y+20, r24	; 0x14
+     be8:	9d 8b       	std	Y+21, r25	; 0x15
+	VL53L0X_timeoutMclksToMicroseconds(timeouts->final_range_mclks,
+	timeouts->final_range_vcsel_period_pclks);
+}
+     bea:	df 91       	pop	r29
+     bec:	cf 91       	pop	r28
+     bee:	1f 91       	pop	r17
+     bf0:	0f 91       	pop	r16
+     bf2:	08 95       	ret
+
+00000bf4 <VL53L0X_getMeasurementTimingBudget>:
+
+// Get the measurement timing budget in microseconds
+// based on VL53L0X_get_measurement_timing_budget_micro_seconds()
+// in us
+uint32_t VL53L0X_getMeasurementTimingBudget()
+{
+     bf4:	0f 93       	push	r16
+     bf6:	1f 93       	push	r17
+     bf8:	cf 93       	push	r28
+     bfa:	df 93       	push	r29
+     bfc:	cd b7       	in	r28, 0x3d	; 61
+     bfe:	de b7       	in	r29, 0x3e	; 62
+     c00:	6b 97       	sbiw	r28, 0x1b	; 27
+     c02:	0f b6       	in	r0, 0x3f	; 63
+     c04:	f8 94       	cli
+     c06:	de bf       	out	0x3e, r29	; 62
+     c08:	0f be       	out	0x3f, r0	; 63
+     c0a:	cd bf       	out	0x3d, r28	; 61
+	uint16_t const FinalRangeOverhead = 550;
+
+	// "Start and end overhead times always present"
+	uint32_t budget_us = StartOverhead + EndOverhead;
+
+	VL53L0X_getSequenceStepEnables(&enables);
+     c0c:	ce 01       	movw	r24, r28
+     c0e:	01 96       	adiw	r24, 0x01	; 1
+     c10:	0e 94 1e 05 	call	0xa3c	; 0xa3c <VL53L0X_getSequenceStepEnables>
+	VL53L0X_getSequenceStepTimeouts(&enables, &timeouts);
+     c14:	be 01       	movw	r22, r28
+     c16:	6a 5f       	subi	r22, 0xFA	; 250
+     c18:	7f 4f       	sbci	r23, 0xFF	; 255
+     c1a:	ce 01       	movw	r24, r28
+     c1c:	01 96       	adiw	r24, 0x01	; 1
+     c1e:	0e 94 aa 05 	call	0xb54	; 0xb54 <VL53L0X_getSequenceStepTimeouts>
+
+	if (enables.tcc)
+     c22:	89 81       	ldd	r24, Y+1	; 0x01
+     c24:	88 23       	and	r24, r24
+     c26:	59 f0       	breq	.+22     	; 0xc3e <VL53L0X_getMeasurementTimingBudget+0x4a>
+	{
+		budget_us += (timeouts.msrc_dss_tcc_us + TccOverhead);
+     c28:	88 89       	ldd	r24, Y+16	; 0x10
+     c2a:	99 89       	ldd	r25, Y+17	; 0x11
+     c2c:	aa 89       	ldd	r26, Y+18	; 0x12
+     c2e:	bb 89       	ldd	r27, Y+19	; 0x13
+     c30:	bc 01       	movw	r22, r24
+     c32:	cd 01       	movw	r24, r26
+     c34:	6c 57       	subi	r22, 0x7C	; 124
+     c36:	72 4f       	sbci	r23, 0xF2	; 242
+     c38:	8f 4f       	sbci	r24, 0xFF	; 255
+     c3a:	9f 4f       	sbci	r25, 0xFF	; 255
+     c3c:	04 c0       	rjmp	.+8      	; 0xc46 <VL53L0X_getMeasurementTimingBudget+0x52>
+	uint16_t const DssOverhead        = 690;
+	uint16_t const PreRangeOverhead   = 660;
+	uint16_t const FinalRangeOverhead = 550;
+
+	// "Start and end overhead times always present"
+	uint32_t budget_us = StartOverhead + EndOverhead;
+     c3e:	66 e3       	ldi	r22, 0x36	; 54
+     c40:	7b e0       	ldi	r23, 0x0B	; 11
+     c42:	80 e0       	ldi	r24, 0x00	; 0
+     c44:	90 e0       	ldi	r25, 0x00	; 0
+	if (enables.tcc)
+	{
+		budget_us += (timeouts.msrc_dss_tcc_us + TccOverhead);
+	}
+
+	if (enables.dss)
+     c46:	2b 81       	ldd	r18, Y+3	; 0x03
+     c48:	22 23       	and	r18, r18
+     c4a:	89 f0       	breq	.+34     	; 0xc6e <VL53L0X_getMeasurementTimingBudget+0x7a>
+	{
+		budget_us += 2 * (timeouts.msrc_dss_tcc_us + DssOverhead);
+     c4c:	08 89       	ldd	r16, Y+16	; 0x10
+     c4e:	19 89       	ldd	r17, Y+17	; 0x11
+     c50:	2a 89       	ldd	r18, Y+18	; 0x12
+     c52:	3b 89       	ldd	r19, Y+19	; 0x13
+     c54:	0e 54       	subi	r16, 0x4E	; 78
+     c56:	1d 4f       	sbci	r17, 0xFD	; 253
+     c58:	2f 4f       	sbci	r18, 0xFF	; 255
+     c5a:	3f 4f       	sbci	r19, 0xFF	; 255
+     c5c:	00 0f       	add	r16, r16
+     c5e:	11 1f       	adc	r17, r17
+     c60:	22 1f       	adc	r18, r18
+     c62:	33 1f       	adc	r19, r19
+     c64:	60 0f       	add	r22, r16
+     c66:	71 1f       	adc	r23, r17
+     c68:	82 1f       	adc	r24, r18
+     c6a:	93 1f       	adc	r25, r19
+     c6c:	0f c0       	rjmp	.+30     	; 0xc8c <VL53L0X_getMeasurementTimingBudget+0x98>
+	}
+	else if (enables.msrc)
+     c6e:	2a 81       	ldd	r18, Y+2	; 0x02
+     c70:	22 23       	and	r18, r18
+     c72:	61 f0       	breq	.+24     	; 0xc8c <VL53L0X_getMeasurementTimingBudget+0x98>
+	{
+		budget_us += (timeouts.msrc_dss_tcc_us + MsrcOverhead);
+     c74:	08 89       	ldd	r16, Y+16	; 0x10
+     c76:	19 89       	ldd	r17, Y+17	; 0x11
+     c78:	2a 89       	ldd	r18, Y+18	; 0x12
+     c7a:	3b 89       	ldd	r19, Y+19	; 0x13
+     c7c:	0c 56       	subi	r16, 0x6C	; 108
+     c7e:	1d 4f       	sbci	r17, 0xFD	; 253
+     c80:	2f 4f       	sbci	r18, 0xFF	; 255
+     c82:	3f 4f       	sbci	r19, 0xFF	; 255
+     c84:	60 0f       	add	r22, r16
+     c86:	71 1f       	adc	r23, r17
+     c88:	82 1f       	adc	r24, r18
+     c8a:	93 1f       	adc	r25, r19
+	}
+
+	if (enables.pre_range)
+     c8c:	2c 81       	ldd	r18, Y+4	; 0x04
+     c8e:	22 23       	and	r18, r18
+     c90:	61 f0       	breq	.+24     	; 0xcaa <VL53L0X_getMeasurementTimingBudget+0xb6>
+	{
+		budget_us += (timeouts.pre_range_us + PreRangeOverhead);
+     c92:	0c 89       	ldd	r16, Y+20	; 0x14
+     c94:	1d 89       	ldd	r17, Y+21	; 0x15
+     c96:	2e 89       	ldd	r18, Y+22	; 0x16
+     c98:	3f 89       	ldd	r19, Y+23	; 0x17
+     c9a:	0c 56       	subi	r16, 0x6C	; 108
+     c9c:	1d 4f       	sbci	r17, 0xFD	; 253
+     c9e:	2f 4f       	sbci	r18, 0xFF	; 255
+     ca0:	3f 4f       	sbci	r19, 0xFF	; 255
+     ca2:	60 0f       	add	r22, r16
+     ca4:	71 1f       	adc	r23, r17
+     ca6:	82 1f       	adc	r24, r18
+     ca8:	93 1f       	adc	r25, r19
+	}
+
+	if (enables.final_range)
+     caa:	2d 81       	ldd	r18, Y+5	; 0x05
+     cac:	22 23       	and	r18, r18
+     cae:	61 f0       	breq	.+24     	; 0xcc8 <VL53L0X_getMeasurementTimingBudget+0xd4>
+	{
+		budget_us += (timeouts.final_range_us + FinalRangeOverhead);
+     cb0:	08 8d       	ldd	r16, Y+24	; 0x18
+     cb2:	19 8d       	ldd	r17, Y+25	; 0x19
+     cb4:	2a 8d       	ldd	r18, Y+26	; 0x1a
+     cb6:	3b 8d       	ldd	r19, Y+27	; 0x1b
+     cb8:	0a 5d       	subi	r16, 0xDA	; 218
+     cba:	1d 4f       	sbci	r17, 0xFD	; 253
+     cbc:	2f 4f       	sbci	r18, 0xFF	; 255
+     cbe:	3f 4f       	sbci	r19, 0xFF	; 255
+     cc0:	60 0f       	add	r22, r16
+     cc2:	71 1f       	adc	r23, r17
+     cc4:	82 1f       	adc	r24, r18
+     cc6:	93 1f       	adc	r25, r19
+	}
+
+	VL53L0X_measurement_timing_budget_us = budget_us; // store for internal reuse
+     cc8:	60 93 05 01 	sts	0x0105, r22	; 0x800105 <VL53L0X_measurement_timing_budget_us>
+     ccc:	70 93 06 01 	sts	0x0106, r23	; 0x800106 <VL53L0X_measurement_timing_budget_us+0x1>
+     cd0:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <VL53L0X_measurement_timing_budget_us+0x2>
+     cd4:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <VL53L0X_measurement_timing_budget_us+0x3>
+	return budget_us;
+}
+     cd8:	6b 96       	adiw	r28, 0x1b	; 27
+     cda:	0f b6       	in	r0, 0x3f	; 63
+     cdc:	f8 94       	cli
+     cde:	de bf       	out	0x3e, r29	; 62
+     ce0:	0f be       	out	0x3f, r0	; 63
+     ce2:	cd bf       	out	0x3d, r28	; 61
+     ce4:	df 91       	pop	r29
+     ce6:	cf 91       	pop	r28
+     ce8:	1f 91       	pop	r17
+     cea:	0f 91       	pop	r16
+     cec:	08 95       	ret
+
+00000cee <VL53L0X_timeoutMicrosecondsToMclks>:
+}
+
+// Convert sequence step timeout from microseconds to MCLKs with given VCSEL period in PCLKs
+// based on VL53L0X_calc_timeout_mclks()
+uint32_t VL53L0X_timeoutMicrosecondsToMclks(uint32_t timeout_period_us, uint8_t vcsel_period_pclks)
+{
+     cee:	8f 92       	push	r8
+     cf0:	9f 92       	push	r9
+     cf2:	af 92       	push	r10
+     cf4:	bf 92       	push	r11
+     cf6:	cf 92       	push	r12
+     cf8:	df 92       	push	r13
+     cfa:	ef 92       	push	r14
+     cfc:	ff 92       	push	r15
+     cfe:	4b 01       	movw	r8, r22
+     d00:	5c 01       	movw	r10, r24
+	uint32_t macro_period_ns = calcMacroPeriod(vcsel_period_pclks);
+     d02:	a4 2f       	mov	r26, r20
+     d04:	b0 e0       	ldi	r27, 0x00	; 0
+     d06:	20 e0       	ldi	r18, 0x00	; 0
+     d08:	3f e2       	ldi	r19, 0x2F	; 47
+     d0a:	4a e3       	ldi	r20, 0x3A	; 58
+     d0c:	50 e0       	ldi	r21, 0x00	; 0
+     d0e:	0e 94 ac 0b 	call	0x1758	; 0x1758 <__muluhisi3>
+     d12:	6b 01       	movw	r12, r22
+     d14:	7c 01       	movw	r14, r24
+     d16:	24 ef       	ldi	r18, 0xF4	; 244
+     d18:	c2 0e       	add	r12, r18
+     d1a:	21 e0       	ldi	r18, 0x01	; 1
+     d1c:	d2 1e       	adc	r13, r18
+     d1e:	e1 1c       	adc	r14, r1
+     d20:	f1 1c       	adc	r15, r1
+
+	return (((timeout_period_us * 1000) + (macro_period_ns / 2)) / macro_period_ns);
+     d22:	a8 ee       	ldi	r26, 0xE8	; 232
+     d24:	b3 e0       	ldi	r27, 0x03	; 3
+     d26:	a5 01       	movw	r20, r10
+     d28:	94 01       	movw	r18, r8
+     d2a:	0e 94 ac 0b 	call	0x1758	; 0x1758 <__muluhisi3>
+     d2e:	4b 01       	movw	r8, r22
+     d30:	5c 01       	movw	r10, r24
+     d32:	c7 01       	movw	r24, r14
+     d34:	b6 01       	movw	r22, r12
+     d36:	20 ed       	ldi	r18, 0xD0	; 208
+     d38:	37 e0       	ldi	r19, 0x07	; 7
+     d3a:	40 e0       	ldi	r20, 0x00	; 0
+     d3c:	50 e0       	ldi	r21, 0x00	; 0
+     d3e:	0e 94 7b 0b 	call	0x16f6	; 0x16f6 <__udivmodsi4>
+     d42:	82 0e       	add	r8, r18
+     d44:	93 1e       	adc	r9, r19
+     d46:	a4 1e       	adc	r10, r20
+     d48:	b5 1e       	adc	r11, r21
+     d4a:	c7 01       	movw	r24, r14
+     d4c:	b6 01       	movw	r22, r12
+     d4e:	28 ee       	ldi	r18, 0xE8	; 232
+     d50:	33 e0       	ldi	r19, 0x03	; 3
+     d52:	40 e0       	ldi	r20, 0x00	; 0
+     d54:	50 e0       	ldi	r21, 0x00	; 0
+     d56:	0e 94 7b 0b 	call	0x16f6	; 0x16f6 <__udivmodsi4>
+     d5a:	c5 01       	movw	r24, r10
+     d5c:	b4 01       	movw	r22, r8
+     d5e:	0e 94 7b 0b 	call	0x16f6	; 0x16f6 <__udivmodsi4>
+}
+     d62:	ca 01       	movw	r24, r20
+     d64:	b9 01       	movw	r22, r18
+     d66:	ff 90       	pop	r15
+     d68:	ef 90       	pop	r14
+     d6a:	df 90       	pop	r13
+     d6c:	cf 90       	pop	r12
+     d6e:	bf 90       	pop	r11
+     d70:	af 90       	pop	r10
+     d72:	9f 90       	pop	r9
+     d74:	8f 90       	pop	r8
+     d76:	08 95       	ret
+
+00000d78 <VL53L0X_setMeasurementTimingBudget>:
+// budget allows for more accurate measurements. Increasing the budget by a
+// factor of N decreases the range measurement standard deviation by a factor of
+// sqrt(N). Defaults to about 33 milliseconds; the minimum is 20 ms.
+// based on VL53L0X_set_measurement_timing_budget_micro_seconds()
+uint8_t VL53L0X_setMeasurementTimingBudget(uint32_t budget_us)
+{
+     d78:	cf 92       	push	r12
+     d7a:	df 92       	push	r13
+     d7c:	ef 92       	push	r14
+     d7e:	ff 92       	push	r15
+     d80:	1f 93       	push	r17
+     d82:	cf 93       	push	r28
+     d84:	df 93       	push	r29
+     d86:	cd b7       	in	r28, 0x3d	; 61
+     d88:	de b7       	in	r29, 0x3e	; 62
+     d8a:	6b 97       	sbiw	r28, 0x1b	; 27
+     d8c:	0f b6       	in	r0, 0x3f	; 63
+     d8e:	f8 94       	cli
+     d90:	de bf       	out	0x3e, r29	; 62
+     d92:	0f be       	out	0x3f, r0	; 63
+     d94:	cd bf       	out	0x3d, r28	; 61
+     d96:	6b 01       	movw	r12, r22
+     d98:	7c 01       	movw	r14, r24
+	uint16_t const PreRangeOverhead   = 660;
+	uint16_t const FinalRangeOverhead = 550;
+
+	uint32_t used_budget_us = StartOverhead + EndOverhead;
+
+	VL53L0X_getSequenceStepEnables(&enables);
+     d9a:	ce 01       	movw	r24, r28
+     d9c:	01 96       	adiw	r24, 0x01	; 1
+     d9e:	0e 94 1e 05 	call	0xa3c	; 0xa3c <VL53L0X_getSequenceStepEnables>
+	VL53L0X_getSequenceStepTimeouts(&enables, &timeouts);
+     da2:	be 01       	movw	r22, r28
+     da4:	6a 5f       	subi	r22, 0xFA	; 250
+     da6:	7f 4f       	sbci	r23, 0xFF	; 255
+     da8:	ce 01       	movw	r24, r28
+     daa:	01 96       	adiw	r24, 0x01	; 1
+     dac:	0e 94 aa 05 	call	0xb54	; 0xb54 <VL53L0X_getSequenceStepTimeouts>
+
+	if (enables.tcc)
+     db0:	89 81       	ldd	r24, Y+1	; 0x01
+     db2:	88 23       	and	r24, r24
+     db4:	49 f0       	breq	.+18     	; 0xdc8 <VL53L0X_setMeasurementTimingBudget+0x50>
+	{
+		used_budget_us += (timeouts.msrc_dss_tcc_us + TccOverhead);
+     db6:	88 89       	ldd	r24, Y+16	; 0x10
+     db8:	99 89       	ldd	r25, Y+17	; 0x11
+     dba:	aa 89       	ldd	r26, Y+18	; 0x12
+     dbc:	bb 89       	ldd	r27, Y+19	; 0x13
+     dbe:	8c 57       	subi	r24, 0x7C	; 124
+     dc0:	92 4f       	sbci	r25, 0xF2	; 242
+     dc2:	af 4f       	sbci	r26, 0xFF	; 255
+     dc4:	bf 4f       	sbci	r27, 0xFF	; 255
+     dc6:	04 c0       	rjmp	.+8      	; 0xdd0 <VL53L0X_setMeasurementTimingBudget+0x58>
+	uint16_t const TccOverhead        = 590;
+	uint16_t const DssOverhead        = 690;
+	uint16_t const PreRangeOverhead   = 660;
+	uint16_t const FinalRangeOverhead = 550;
+
+	uint32_t used_budget_us = StartOverhead + EndOverhead;
+     dc8:	86 e3       	ldi	r24, 0x36	; 54
+     dca:	9b e0       	ldi	r25, 0x0B	; 11
+     dcc:	a0 e0       	ldi	r26, 0x00	; 0
+     dce:	b0 e0       	ldi	r27, 0x00	; 0
+	if (enables.tcc)
+	{
+		used_budget_us += (timeouts.msrc_dss_tcc_us + TccOverhead);
+	}
+
+	if (enables.dss)
+     dd0:	2b 81       	ldd	r18, Y+3	; 0x03
+     dd2:	22 23       	and	r18, r18
+     dd4:	89 f0       	breq	.+34     	; 0xdf8 <VL53L0X_setMeasurementTimingBudget+0x80>
+	{
+		used_budget_us += 2 * (timeouts.msrc_dss_tcc_us + DssOverhead);
+     dd6:	48 89       	ldd	r20, Y+16	; 0x10
+     dd8:	59 89       	ldd	r21, Y+17	; 0x11
+     dda:	6a 89       	ldd	r22, Y+18	; 0x12
+     ddc:	7b 89       	ldd	r23, Y+19	; 0x13
+     dde:	4e 54       	subi	r20, 0x4E	; 78
+     de0:	5d 4f       	sbci	r21, 0xFD	; 253
+     de2:	6f 4f       	sbci	r22, 0xFF	; 255
+     de4:	7f 4f       	sbci	r23, 0xFF	; 255
+     de6:	44 0f       	add	r20, r20
+     de8:	55 1f       	adc	r21, r21
+     dea:	66 1f       	adc	r22, r22
+     dec:	77 1f       	adc	r23, r23
+     dee:	84 0f       	add	r24, r20
+     df0:	95 1f       	adc	r25, r21
+     df2:	a6 1f       	adc	r26, r22
+     df4:	b7 1f       	adc	r27, r23
+     df6:	0f c0       	rjmp	.+30     	; 0xe16 <VL53L0X_setMeasurementTimingBudget+0x9e>
+	}
+	else if (enables.msrc)
+     df8:	2a 81       	ldd	r18, Y+2	; 0x02
+     dfa:	22 23       	and	r18, r18
+     dfc:	61 f0       	breq	.+24     	; 0xe16 <VL53L0X_setMeasurementTimingBudget+0x9e>
+	{
+		used_budget_us += (timeouts.msrc_dss_tcc_us + MsrcOverhead);
+     dfe:	48 89       	ldd	r20, Y+16	; 0x10
+     e00:	59 89       	ldd	r21, Y+17	; 0x11
+     e02:	6a 89       	ldd	r22, Y+18	; 0x12
+     e04:	7b 89       	ldd	r23, Y+19	; 0x13
+     e06:	4c 56       	subi	r20, 0x6C	; 108
+     e08:	5d 4f       	sbci	r21, 0xFD	; 253
+     e0a:	6f 4f       	sbci	r22, 0xFF	; 255
+     e0c:	7f 4f       	sbci	r23, 0xFF	; 255
+     e0e:	84 0f       	add	r24, r20
+     e10:	95 1f       	adc	r25, r21
+     e12:	a6 1f       	adc	r26, r22
+     e14:	b7 1f       	adc	r27, r23
+	}
+
+	if (enables.pre_range)
+     e16:	1c 81       	ldd	r17, Y+4	; 0x04
+     e18:	11 23       	and	r17, r17
+     e1a:	61 f0       	breq	.+24     	; 0xe34 <VL53L0X_setMeasurementTimingBudget+0xbc>
+	{
+		used_budget_us += (timeouts.pre_range_us + PreRangeOverhead);
+     e1c:	4c 89       	ldd	r20, Y+20	; 0x14
+     e1e:	5d 89       	ldd	r21, Y+21	; 0x15
+     e20:	6e 89       	ldd	r22, Y+22	; 0x16
+     e22:	7f 89       	ldd	r23, Y+23	; 0x17
+     e24:	4c 56       	subi	r20, 0x6C	; 108
+     e26:	5d 4f       	sbci	r21, 0xFD	; 253
+     e28:	6f 4f       	sbci	r22, 0xFF	; 255
+     e2a:	7f 4f       	sbci	r23, 0xFF	; 255
+     e2c:	84 0f       	add	r24, r20
+     e2e:	95 1f       	adc	r25, r21
+     e30:	a6 1f       	adc	r26, r22
+     e32:	b7 1f       	adc	r27, r23
+	}
+
+	if (enables.final_range)
+     e34:	2d 81       	ldd	r18, Y+5	; 0x05
+     e36:	22 23       	and	r18, r18
+     e38:	69 f1       	breq	.+90     	; 0xe94 <VL53L0X_setMeasurementTimingBudget+0x11c>
+	{
+		used_budget_us += FinalRangeOverhead;
+     e3a:	8a 5d       	subi	r24, 0xDA	; 218
+     e3c:	9d 4f       	sbci	r25, 0xFD	; 253
+     e3e:	af 4f       	sbci	r26, 0xFF	; 255
+     e40:	bf 4f       	sbci	r27, 0xFF	; 255
+		// budget and the sum of all other timeouts within the sequence.
+		// If there is no room for the final range timeout, then an error
+		// will be set. Otherwise the remaining time will be applied to
+		// the final range."
+
+		if (used_budget_us > budget_us)
+     e42:	c8 16       	cp	r12, r24
+     e44:	d9 06       	cpc	r13, r25
+     e46:	ea 06       	cpc	r14, r26
+     e48:	fb 06       	cpc	r15, r27
+     e4a:	30 f1       	brcs	.+76     	; 0xe98 <VL53L0X_setMeasurementTimingBudget+0x120>
+		// "For the final range timeout, the pre-range timeout
+		//  must be added. To do this both final and pre-range
+		//  timeouts must be expressed in macro periods MClks
+		//  because they have different vcsel periods."
+
+		uint32_t final_range_timeout_mclks =
+     e4c:	a7 01       	movw	r20, r14
+     e4e:	96 01       	movw	r18, r12
+     e50:	28 1b       	sub	r18, r24
+     e52:	39 0b       	sbc	r19, r25
+     e54:	4a 0b       	sbc	r20, r26
+     e56:	5b 0b       	sbc	r21, r27
+     e58:	ca 01       	movw	r24, r20
+     e5a:	b9 01       	movw	r22, r18
+     e5c:	48 85       	ldd	r20, Y+8	; 0x08
+     e5e:	0e 94 77 06 	call	0xcee	; 0xcee <VL53L0X_timeoutMicrosecondsToMclks>
+		VL53L0X_timeoutMicrosecondsToMclks(final_range_timeout_us,
+		timeouts.final_range_vcsel_period_pclks);
+
+		if (enables.pre_range)
+     e62:	11 23       	and	r17, r17
+     e64:	31 f0       	breq	.+12     	; 0xe72 <VL53L0X_setMeasurementTimingBudget+0xfa>
+		{
+			final_range_timeout_mclks += timeouts.pre_range_mclks;
+     e66:	2c 85       	ldd	r18, Y+12	; 0x0c
+     e68:	3d 85       	ldd	r19, Y+13	; 0x0d
+     e6a:	62 0f       	add	r22, r18
+     e6c:	73 1f       	adc	r23, r19
+     e6e:	81 1d       	adc	r24, r1
+     e70:	91 1d       	adc	r25, r1
+		}
+
+		I2C_writeReg16(VL53L0XADDRESS,FINAL_RANGE_CONFIG_TIMEOUT_MACROP_HI,VL53L0X_encodeTimeout(final_range_timeout_mclks));
+     e72:	0e 94 47 05 	call	0xa8e	; 0xa8e <VL53L0X_encodeTimeout>
+     e76:	ac 01       	movw	r20, r24
+     e78:	61 e7       	ldi	r22, 0x71	; 113
+     e7a:	89 e2       	ldi	r24, 0x29	; 41
+     e7c:	0e 94 7f 01 	call	0x2fe	; 0x2fe <I2C_writeReg16>
+
+		// set_sequence_step_timeout() end
+
+		VL53L0X_measurement_timing_budget_us = budget_us; // store for internal reuse
+     e80:	c0 92 05 01 	sts	0x0105, r12	; 0x800105 <VL53L0X_measurement_timing_budget_us>
+     e84:	d0 92 06 01 	sts	0x0106, r13	; 0x800106 <VL53L0X_measurement_timing_budget_us+0x1>
+     e88:	e0 92 07 01 	sts	0x0107, r14	; 0x800107 <VL53L0X_measurement_timing_budget_us+0x2>
+     e8c:	f0 92 08 01 	sts	0x0108, r15	; 0x800108 <VL53L0X_measurement_timing_budget_us+0x3>
+	}
+	return 1;
+     e90:	81 e0       	ldi	r24, 0x01	; 1
+     e92:	03 c0       	rjmp	.+6      	; 0xe9a <VL53L0X_setMeasurementTimingBudget+0x122>
+     e94:	81 e0       	ldi	r24, 0x01	; 1
+     e96:	01 c0       	rjmp	.+2      	; 0xe9a <VL53L0X_setMeasurementTimingBudget+0x122>
+		// the final range."
+
+		if (used_budget_us > budget_us)
+		{
+			// "Requested timeout too big."
+			return 0;
+     e98:	80 e0       	ldi	r24, 0x00	; 0
+		// set_sequence_step_timeout() end
+
+		VL53L0X_measurement_timing_budget_us = budget_us; // store for internal reuse
+	}
+	return 1;
+}
+     e9a:	6b 96       	adiw	r28, 0x1b	; 27
+     e9c:	0f b6       	in	r0, 0x3f	; 63
+     e9e:	f8 94       	cli
+     ea0:	de bf       	out	0x3e, r29	; 62
+     ea2:	0f be       	out	0x3f, r0	; 63
+     ea4:	cd bf       	out	0x3d, r28	; 61
+     ea6:	df 91       	pop	r29
+     ea8:	cf 91       	pop	r28
+     eaa:	1f 91       	pop	r17
+     eac:	ff 90       	pop	r15
+     eae:	ef 90       	pop	r14
+     eb0:	df 90       	pop	r13
+     eb2:	cf 90       	pop	r12
+     eb4:	08 95       	ret
+
+00000eb6 <VL53L0X_performSingleRefCalibration>:
+
+
+// based on VL53L0X_perform_single_ref_calibration()
+uint8_t VL53L0X_performSingleRefCalibration(uint8_t vhv_init_byte)
+{
+	I2C_writeReg(VL53L0XADDRESS,SYSRANGE_START, 0x01 | vhv_init_byte); // VL53L0X_REG_SYSRANGE_MODE_START_STOP
+     eb6:	48 2f       	mov	r20, r24
+     eb8:	41 60       	ori	r20, 0x01	; 1
+     eba:	60 e0       	ldi	r22, 0x00	; 0
+     ebc:	89 e2       	ldi	r24, 0x29	; 41
+     ebe:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	while (((I2C_readReg(VL53L0XADDRESS,RESULT_INTERRUPT_STATUS) & 0x07) == 0)&& !I2C_err);
+     ec2:	63 e1       	ldi	r22, 0x13	; 19
+     ec4:	89 e2       	ldi	r24, 0x29	; 41
+     ec6:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     eca:	87 70       	andi	r24, 0x07	; 7
+     ecc:	21 f4       	brne	.+8      	; 0xed6 <VL53L0X_performSingleRefCalibration+0x20>
+     ece:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     ed2:	88 23       	and	r24, r24
+     ed4:	b1 f3       	breq	.-20     	; 0xec2 <VL53L0X_performSingleRefCalibration+0xc>
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CLEAR, 0x01);
+     ed6:	41 e0       	ldi	r20, 0x01	; 1
+     ed8:	6b e0       	ldi	r22, 0x0B	; 11
+     eda:	89 e2       	ldi	r24, 0x29	; 41
+     edc:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,SYSRANGE_START, 0x00);
+     ee0:	40 e0       	ldi	r20, 0x00	; 0
+     ee2:	60 e0       	ldi	r22, 0x00	; 0
+     ee4:	89 e2       	ldi	r24, 0x29	; 41
+     ee6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	return 1;
+}
+     eea:	81 e0       	ldi	r24, 0x01	; 1
+     eec:	08 95       	ret
+
+00000eee <VL53L0X_init>:
+
+
+
+
+uint8_t VL53L0X_init(uint8_t io_2v8)
+{
+     eee:	cf 93       	push	r28
+     ef0:	df 93       	push	r29
+     ef2:	cd b7       	in	r28, 0x3d	; 61
+     ef4:	de b7       	in	r29, 0x3e	; 62
+     ef6:	28 97       	sbiw	r28, 0x08	; 8
+     ef8:	0f b6       	in	r0, 0x3f	; 63
+     efa:	f8 94       	cli
+     efc:	de bf       	out	0x3e, r29	; 62
+     efe:	0f be       	out	0x3f, r0	; 63
+     f00:	cd bf       	out	0x3d, r28	; 61
+	// VL53L0X_DataInit() begin
+
+	// sensor uses 1V8 mode for I/O by default; switch to 2V8 mode if necessary
+	if (io_2v8)
+     f02:	88 23       	and	r24, r24
+     f04:	51 f0       	breq	.+20     	; 0xf1a <VL53L0X_init+0x2c>
+	{
+		I2C_writeReg(VL53L0XADDRESS,VHV_CONFIG_PAD_SCL_SDA__EXTSUP_HV,I2C_readReg(VL53L0XADDRESS,VHV_CONFIG_PAD_SCL_SDA__EXTSUP_HV)|0x01); // set bit 0
+     f06:	69 e8       	ldi	r22, 0x89	; 137
+     f08:	89 e2       	ldi	r24, 0x29	; 41
+     f0a:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     f0e:	48 2f       	mov	r20, r24
+     f10:	41 60       	ori	r20, 0x01	; 1
+     f12:	69 e8       	ldi	r22, 0x89	; 137
+     f14:	89 e2       	ldi	r24, 0x29	; 41
+     f16:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	}
+
+	// "Set I2C standard mode"
+	I2C_writeReg(VL53L0XADDRESS,0x88, 0x00);
+     f1a:	40 e0       	ldi	r20, 0x00	; 0
+     f1c:	68 e8       	ldi	r22, 0x88	; 136
+     f1e:	89 e2       	ldi	r24, 0x29	; 41
+     f20:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	if(I2C_err)
+     f24:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <I2C_err>
+     f28:	81 11       	cpse	r24, r1
+     f2a:	83 c2       	rjmp	.+1286   	; 0x1432 <VL53L0X_init+0x544>
+		return 0;
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x01);
+     f2c:	41 e0       	ldi	r20, 0x01	; 1
+     f2e:	60 e8       	ldi	r22, 0x80	; 128
+     f30:	89 e2       	ldi	r24, 0x29	; 41
+     f32:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+     f36:	41 e0       	ldi	r20, 0x01	; 1
+     f38:	6f ef       	ldi	r22, 0xFF	; 255
+     f3a:	89 e2       	ldi	r24, 0x29	; 41
+     f3c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x00);
+     f40:	40 e0       	ldi	r20, 0x00	; 0
+     f42:	60 e0       	ldi	r22, 0x00	; 0
+     f44:	89 e2       	ldi	r24, 0x29	; 41
+     f46:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	VL53L0X_stop_variable = I2C_readReg(VL53L0XADDRESS,0x91);
+     f4a:	61 e9       	ldi	r22, 0x91	; 145
+     f4c:	89 e2       	ldi	r24, 0x29	; 41
+     f4e:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     f52:	80 93 09 01 	sts	0x0109, r24	; 0x800109 <VL53L0X_stop_variable>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x01);
+     f56:	41 e0       	ldi	r20, 0x01	; 1
+     f58:	60 e0       	ldi	r22, 0x00	; 0
+     f5a:	89 e2       	ldi	r24, 0x29	; 41
+     f5c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+     f60:	40 e0       	ldi	r20, 0x00	; 0
+     f62:	6f ef       	ldi	r22, 0xFF	; 255
+     f64:	89 e2       	ldi	r24, 0x29	; 41
+     f66:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x00);
+     f6a:	40 e0       	ldi	r20, 0x00	; 0
+     f6c:	60 e8       	ldi	r22, 0x80	; 128
+     f6e:	89 e2       	ldi	r24, 0x29	; 41
+     f70:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// disable SIGNAL_RATE_MSRC (bit 1) and SIGNAL_RATE_PRE_RANGE (bit 4) limit checks
+	I2C_writeReg(VL53L0XADDRESS,MSRC_CONFIG_CONTROL, I2C_readReg(VL53L0XADDRESS,MSRC_CONFIG_CONTROL) | 0x12);
+     f74:	60 e6       	ldi	r22, 0x60	; 96
+     f76:	89 e2       	ldi	r24, 0x29	; 41
+     f78:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+     f7c:	48 2f       	mov	r20, r24
+     f7e:	42 61       	ori	r20, 0x12	; 18
+     f80:	60 e6       	ldi	r22, 0x60	; 96
+     f82:	89 e2       	ldi	r24, 0x29	; 41
+     f84:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// set final range signal rate limit to 0.25 MCPS (million counts per second)
+	VL53L0X_setSignalRateLimit(0.25);
+     f88:	60 e0       	ldi	r22, 0x00	; 0
+     f8a:	70 e0       	ldi	r23, 0x00	; 0
+     f8c:	80 e8       	ldi	r24, 0x80	; 128
+     f8e:	9e e3       	ldi	r25, 0x3E	; 62
+     f90:	0e 94 f6 03 	call	0x7ec	; 0x7ec <VL53L0X_setSignalRateLimit>
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0xFF);
+     f94:	4f ef       	ldi	r20, 0xFF	; 255
+     f96:	61 e0       	ldi	r22, 0x01	; 1
+     f98:	89 e2       	ldi	r24, 0x29	; 41
+     f9a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// VL53L0X_StaticInit() begin
+
+	uint8_t spad_count;
+	uint8_t spad_type_is_aperture;
+	if (!VL53L0X_getSpadInfo(&spad_count, &spad_type_is_aperture)) { return 0; }
+     f9e:	be 01       	movw	r22, r28
+     fa0:	6e 5f       	subi	r22, 0xFE	; 254
+     fa2:	7f 4f       	sbci	r23, 0xFF	; 255
+     fa4:	ce 01       	movw	r24, r28
+     fa6:	01 96       	adiw	r24, 0x01	; 1
+     fa8:	0e 94 98 04 	call	0x930	; 0x930 <VL53L0X_getSpadInfo>
+     fac:	88 23       	and	r24, r24
+     fae:	09 f4       	brne	.+2      	; 0xfb2 <VL53L0X_init+0xc4>
+     fb0:	41 c2       	rjmp	.+1154   	; 0x1434 <VL53L0X_init+0x546>
+
+	// The SPAD map (RefGoodSpadMap) is read by VL53L0X_get_info_from_device() in
+	// the API, but the same data seems to be more easily readable from
+	// GLOBAL_CONFIG_SPAD_ENABLES_REF_0 through _6, so read it from there
+	uint8_t ref_spad_map[6];
+	I2C_readToBuff(VL53L0XADDRESS,GLOBAL_CONFIG_SPAD_ENABLES_REF_0, ref_spad_map, 6);
+     fb2:	26 e0       	ldi	r18, 0x06	; 6
+     fb4:	ae 01       	movw	r20, r28
+     fb6:	4d 5f       	subi	r20, 0xFD	; 253
+     fb8:	5f 4f       	sbci	r21, 0xFF	; 255
+     fba:	60 eb       	ldi	r22, 0xB0	; 176
+     fbc:	89 e2       	ldi	r24, 0x29	; 41
+     fbe:	0e 94 f5 01 	call	0x3ea	; 0x3ea <I2C_readToBuff>
+
+	// -- VL53L0X_set_reference_spads() begin (assume NVM values are valid)
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+     fc2:	41 e0       	ldi	r20, 0x01	; 1
+     fc4:	6f ef       	ldi	r22, 0xFF	; 255
+     fc6:	89 e2       	ldi	r24, 0x29	; 41
+     fc8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,DYNAMIC_SPAD_REF_EN_START_OFFSET, 0x00);
+     fcc:	40 e0       	ldi	r20, 0x00	; 0
+     fce:	6f e4       	ldi	r22, 0x4F	; 79
+     fd0:	89 e2       	ldi	r24, 0x29	; 41
+     fd2:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,DYNAMIC_SPAD_NUM_REQUESTED_REF_SPAD, 0x2C);
+     fd6:	4c e2       	ldi	r20, 0x2C	; 44
+     fd8:	6e e4       	ldi	r22, 0x4E	; 78
+     fda:	89 e2       	ldi	r24, 0x29	; 41
+     fdc:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+     fe0:	40 e0       	ldi	r20, 0x00	; 0
+     fe2:	6f ef       	ldi	r22, 0xFF	; 255
+     fe4:	89 e2       	ldi	r24, 0x29	; 41
+     fe6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,GLOBAL_CONFIG_REF_EN_START_SELECT, 0xB4);
+     fea:	44 eb       	ldi	r20, 0xB4	; 180
+     fec:	66 eb       	ldi	r22, 0xB6	; 182
+     fee:	89 e2       	ldi	r24, 0x29	; 41
+     ff0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	uint8_t first_spad_to_enable = spad_type_is_aperture ? 12 : 0; // 12 is the first aperture spad
+     ff4:	8a 81       	ldd	r24, Y+2	; 0x02
+     ff6:	81 11       	cpse	r24, r1
+     ff8:	02 c0       	rjmp	.+4      	; 0xffe <VL53L0X_init+0x110>
+     ffa:	60 e0       	ldi	r22, 0x00	; 0
+     ffc:	01 c0       	rjmp	.+2      	; 0x1000 <VL53L0X_init+0x112>
+     ffe:	6c e0       	ldi	r22, 0x0C	; 12
+	uint8_t spads_enabled = 0;
+
+	for (uint8_t i = 0; i < 48; i++)
+	{
+		if (i < first_spad_to_enable || spads_enabled == spad_count)
+    1000:	a9 81       	ldd	r26, Y+1	; 0x01
+	I2C_writeReg(VL53L0XADDRESS,GLOBAL_CONFIG_REF_EN_START_SELECT, 0xB4);
+
+	uint8_t first_spad_to_enable = spad_type_is_aperture ? 12 : 0; // 12 is the first aperture spad
+	uint8_t spads_enabled = 0;
+
+	for (uint8_t i = 0; i < 48; i++)
+    1002:	80 e0       	ldi	r24, 0x00	; 0
+	I2C_writeReg(VL53L0XADDRESS,DYNAMIC_SPAD_NUM_REQUESTED_REF_SPAD, 0x2C);
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+	I2C_writeReg(VL53L0XADDRESS,GLOBAL_CONFIG_REF_EN_START_SELECT, 0xB4);
+
+	uint8_t first_spad_to_enable = spad_type_is_aperture ? 12 : 0; // 12 is the first aperture spad
+	uint8_t spads_enabled = 0;
+    1004:	70 e0       	ldi	r23, 0x00	; 0
+	{
+		if (i < first_spad_to_enable || spads_enabled == spad_count)
+		{
+			// This bit is lower than the first one that should be enabled, or
+			// (reference_spad_count) bits have already been enabled, so zero this bit
+			ref_spad_map[i / 8] &= ~(1 << (i % 8));
+    1006:	41 e0       	ldi	r20, 0x01	; 1
+    1008:	50 e0       	ldi	r21, 0x00	; 0
+	uint8_t first_spad_to_enable = spad_type_is_aperture ? 12 : 0; // 12 is the first aperture spad
+	uint8_t spads_enabled = 0;
+
+	for (uint8_t i = 0; i < 48; i++)
+	{
+		if (i < first_spad_to_enable || spads_enabled == spad_count)
+    100a:	86 17       	cp	r24, r22
+    100c:	10 f0       	brcs	.+4      	; 0x1012 <VL53L0X_init+0x124>
+    100e:	a7 13       	cpse	r26, r23
+    1010:	18 c0       	rjmp	.+48     	; 0x1042 <VL53L0X_init+0x154>
+		{
+			// This bit is lower than the first one that should be enabled, or
+			// (reference_spad_count) bits have already been enabled, so zero this bit
+			ref_spad_map[i / 8] &= ~(1 << (i % 8));
+    1012:	98 2f       	mov	r25, r24
+    1014:	96 95       	lsr	r25
+    1016:	96 95       	lsr	r25
+    1018:	96 95       	lsr	r25
+    101a:	e3 e0       	ldi	r30, 0x03	; 3
+    101c:	f0 e0       	ldi	r31, 0x00	; 0
+    101e:	ec 0f       	add	r30, r28
+    1020:	fd 1f       	adc	r31, r29
+    1022:	e9 0f       	add	r30, r25
+    1024:	f1 1d       	adc	r31, r1
+    1026:	98 2f       	mov	r25, r24
+    1028:	97 70       	andi	r25, 0x07	; 7
+    102a:	9a 01       	movw	r18, r20
+    102c:	02 c0       	rjmp	.+4      	; 0x1032 <VL53L0X_init+0x144>
+    102e:	22 0f       	add	r18, r18
+    1030:	33 1f       	adc	r19, r19
+    1032:	9a 95       	dec	r25
+    1034:	e2 f7       	brpl	.-8      	; 0x102e <VL53L0X_init+0x140>
+    1036:	92 2f       	mov	r25, r18
+    1038:	90 95       	com	r25
+    103a:	20 81       	ld	r18, Z
+    103c:	92 23       	and	r25, r18
+    103e:	90 83       	st	Z, r25
+    1040:	15 c0       	rjmp	.+42     	; 0x106c <VL53L0X_init+0x17e>
+		}
+		else if ((ref_spad_map[i / 8] >> (i % 8)) & 0x1)
+    1042:	98 2f       	mov	r25, r24
+    1044:	96 95       	lsr	r25
+    1046:	96 95       	lsr	r25
+    1048:	96 95       	lsr	r25
+    104a:	e3 e0       	ldi	r30, 0x03	; 3
+    104c:	f0 e0       	ldi	r31, 0x00	; 0
+    104e:	ec 0f       	add	r30, r28
+    1050:	fd 1f       	adc	r31, r29
+    1052:	e9 0f       	add	r30, r25
+    1054:	f1 1d       	adc	r31, r1
+    1056:	20 81       	ld	r18, Z
+    1058:	30 e0       	ldi	r19, 0x00	; 0
+    105a:	98 2f       	mov	r25, r24
+    105c:	97 70       	andi	r25, 0x07	; 7
+    105e:	02 c0       	rjmp	.+4      	; 0x1064 <VL53L0X_init+0x176>
+    1060:	35 95       	asr	r19
+    1062:	27 95       	ror	r18
+    1064:	9a 95       	dec	r25
+    1066:	e2 f7       	brpl	.-8      	; 0x1060 <VL53L0X_init+0x172>
+    1068:	20 fd       	sbrc	r18, 0
+		{
+			spads_enabled++;
+    106a:	7f 5f       	subi	r23, 0xFF	; 255
+	I2C_writeReg(VL53L0XADDRESS,GLOBAL_CONFIG_REF_EN_START_SELECT, 0xB4);
+
+	uint8_t first_spad_to_enable = spad_type_is_aperture ? 12 : 0; // 12 is the first aperture spad
+	uint8_t spads_enabled = 0;
+
+	for (uint8_t i = 0; i < 48; i++)
+    106c:	8f 5f       	subi	r24, 0xFF	; 255
+    106e:	80 33       	cpi	r24, 0x30	; 48
+    1070:	61 f6       	brne	.-104    	; 0x100a <VL53L0X_init+0x11c>
+		{
+			spads_enabled++;
+		}
+	}
+
+	I2C_writeBuff(VL53L0XADDRESS,GLOBAL_CONFIG_SPAD_ENABLES_REF_0, ref_spad_map, 6);
+    1072:	26 e0       	ldi	r18, 0x06	; 6
+    1074:	ae 01       	movw	r20, r28
+    1076:	4d 5f       	subi	r20, 0xFD	; 253
+    1078:	5f 4f       	sbci	r21, 0xFF	; 255
+    107a:	60 eb       	ldi	r22, 0xB0	; 176
+    107c:	89 e2       	ldi	r24, 0x29	; 41
+    107e:	0e 94 c6 01 	call	0x38c	; 0x38c <I2C_writeBuff>
+	// -- VL53L0X_set_reference_spads() end
+
+	// -- VL53L0X_load_tuning_settings() begin
+	// DefaultTuningSettings from VL53L0X_tuning.h
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    1082:	41 e0       	ldi	r20, 0x01	; 1
+    1084:	6f ef       	ldi	r22, 0xFF	; 255
+    1086:	89 e2       	ldi	r24, 0x29	; 41
+    1088:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x00);
+    108c:	40 e0       	ldi	r20, 0x00	; 0
+    108e:	60 e0       	ldi	r22, 0x00	; 0
+    1090:	89 e2       	ldi	r24, 0x29	; 41
+    1092:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    1096:	40 e0       	ldi	r20, 0x00	; 0
+    1098:	6f ef       	ldi	r22, 0xFF	; 255
+    109a:	89 e2       	ldi	r24, 0x29	; 41
+    109c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x09, 0x00);
+    10a0:	40 e0       	ldi	r20, 0x00	; 0
+    10a2:	69 e0       	ldi	r22, 0x09	; 9
+    10a4:	89 e2       	ldi	r24, 0x29	; 41
+    10a6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x10, 0x00);
+    10aa:	40 e0       	ldi	r20, 0x00	; 0
+    10ac:	60 e1       	ldi	r22, 0x10	; 16
+    10ae:	89 e2       	ldi	r24, 0x29	; 41
+    10b0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x11, 0x00);
+    10b4:	40 e0       	ldi	r20, 0x00	; 0
+    10b6:	61 e1       	ldi	r22, 0x11	; 17
+    10b8:	89 e2       	ldi	r24, 0x29	; 41
+    10ba:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0x24, 0x01);
+    10be:	41 e0       	ldi	r20, 0x01	; 1
+    10c0:	64 e2       	ldi	r22, 0x24	; 36
+    10c2:	89 e2       	ldi	r24, 0x29	; 41
+    10c4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x25, 0xFF);
+    10c8:	4f ef       	ldi	r20, 0xFF	; 255
+    10ca:	65 e2       	ldi	r22, 0x25	; 37
+    10cc:	89 e2       	ldi	r24, 0x29	; 41
+    10ce:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x75, 0x00);
+    10d2:	40 e0       	ldi	r20, 0x00	; 0
+    10d4:	65 e7       	ldi	r22, 0x75	; 117
+    10d6:	89 e2       	ldi	r24, 0x29	; 41
+    10d8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    10dc:	41 e0       	ldi	r20, 0x01	; 1
+    10de:	6f ef       	ldi	r22, 0xFF	; 255
+    10e0:	89 e2       	ldi	r24, 0x29	; 41
+    10e2:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x4E, 0x2C);
+    10e6:	4c e2       	ldi	r20, 0x2C	; 44
+    10e8:	6e e4       	ldi	r22, 0x4E	; 78
+    10ea:	89 e2       	ldi	r24, 0x29	; 41
+    10ec:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x48, 0x00);
+    10f0:	40 e0       	ldi	r20, 0x00	; 0
+    10f2:	68 e4       	ldi	r22, 0x48	; 72
+    10f4:	89 e2       	ldi	r24, 0x29	; 41
+    10f6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x30, 0x20);
+    10fa:	40 e2       	ldi	r20, 0x20	; 32
+    10fc:	60 e3       	ldi	r22, 0x30	; 48
+    10fe:	89 e2       	ldi	r24, 0x29	; 41
+    1100:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    1104:	40 e0       	ldi	r20, 0x00	; 0
+    1106:	6f ef       	ldi	r22, 0xFF	; 255
+    1108:	89 e2       	ldi	r24, 0x29	; 41
+    110a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x30, 0x09);
+    110e:	49 e0       	ldi	r20, 0x09	; 9
+    1110:	60 e3       	ldi	r22, 0x30	; 48
+    1112:	89 e2       	ldi	r24, 0x29	; 41
+    1114:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x54, 0x00);
+    1118:	40 e0       	ldi	r20, 0x00	; 0
+    111a:	64 e5       	ldi	r22, 0x54	; 84
+    111c:	89 e2       	ldi	r24, 0x29	; 41
+    111e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x31, 0x04);
+    1122:	44 e0       	ldi	r20, 0x04	; 4
+    1124:	61 e3       	ldi	r22, 0x31	; 49
+    1126:	89 e2       	ldi	r24, 0x29	; 41
+    1128:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x32, 0x03);
+    112c:	43 e0       	ldi	r20, 0x03	; 3
+    112e:	62 e3       	ldi	r22, 0x32	; 50
+    1130:	89 e2       	ldi	r24, 0x29	; 41
+    1132:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x40, 0x83);
+    1136:	43 e8       	ldi	r20, 0x83	; 131
+    1138:	60 e4       	ldi	r22, 0x40	; 64
+    113a:	89 e2       	ldi	r24, 0x29	; 41
+    113c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x46, 0x25);
+    1140:	45 e2       	ldi	r20, 0x25	; 37
+    1142:	66 e4       	ldi	r22, 0x46	; 70
+    1144:	89 e2       	ldi	r24, 0x29	; 41
+    1146:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x60, 0x00);
+    114a:	40 e0       	ldi	r20, 0x00	; 0
+    114c:	60 e6       	ldi	r22, 0x60	; 96
+    114e:	89 e2       	ldi	r24, 0x29	; 41
+    1150:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x27, 0x00);
+    1154:	40 e0       	ldi	r20, 0x00	; 0
+    1156:	67 e2       	ldi	r22, 0x27	; 39
+    1158:	89 e2       	ldi	r24, 0x29	; 41
+    115a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x50, 0x06);
+    115e:	46 e0       	ldi	r20, 0x06	; 6
+    1160:	60 e5       	ldi	r22, 0x50	; 80
+    1162:	89 e2       	ldi	r24, 0x29	; 41
+    1164:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x51, 0x00);
+    1168:	40 e0       	ldi	r20, 0x00	; 0
+    116a:	61 e5       	ldi	r22, 0x51	; 81
+    116c:	89 e2       	ldi	r24, 0x29	; 41
+    116e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x52, 0x96);
+    1172:	46 e9       	ldi	r20, 0x96	; 150
+    1174:	62 e5       	ldi	r22, 0x52	; 82
+    1176:	89 e2       	ldi	r24, 0x29	; 41
+    1178:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x56, 0x08);
+    117c:	48 e0       	ldi	r20, 0x08	; 8
+    117e:	66 e5       	ldi	r22, 0x56	; 86
+    1180:	89 e2       	ldi	r24, 0x29	; 41
+    1182:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x57, 0x30);
+    1186:	40 e3       	ldi	r20, 0x30	; 48
+    1188:	67 e5       	ldi	r22, 0x57	; 87
+    118a:	89 e2       	ldi	r24, 0x29	; 41
+    118c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x61, 0x00);
+    1190:	40 e0       	ldi	r20, 0x00	; 0
+    1192:	61 e6       	ldi	r22, 0x61	; 97
+    1194:	89 e2       	ldi	r24, 0x29	; 41
+    1196:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x62, 0x00);
+    119a:	40 e0       	ldi	r20, 0x00	; 0
+    119c:	62 e6       	ldi	r22, 0x62	; 98
+    119e:	89 e2       	ldi	r24, 0x29	; 41
+    11a0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x64, 0x00);
+    11a4:	40 e0       	ldi	r20, 0x00	; 0
+    11a6:	64 e6       	ldi	r22, 0x64	; 100
+    11a8:	89 e2       	ldi	r24, 0x29	; 41
+    11aa:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x65, 0x00);
+    11ae:	40 e0       	ldi	r20, 0x00	; 0
+    11b0:	65 e6       	ldi	r22, 0x65	; 101
+    11b2:	89 e2       	ldi	r24, 0x29	; 41
+    11b4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x66, 0xA0);
+    11b8:	40 ea       	ldi	r20, 0xA0	; 160
+    11ba:	66 e6       	ldi	r22, 0x66	; 102
+    11bc:	89 e2       	ldi	r24, 0x29	; 41
+    11be:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    11c2:	41 e0       	ldi	r20, 0x01	; 1
+    11c4:	6f ef       	ldi	r22, 0xFF	; 255
+    11c6:	89 e2       	ldi	r24, 0x29	; 41
+    11c8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x22, 0x32);
+    11cc:	42 e3       	ldi	r20, 0x32	; 50
+    11ce:	62 e2       	ldi	r22, 0x22	; 34
+    11d0:	89 e2       	ldi	r24, 0x29	; 41
+    11d2:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x47, 0x14);
+    11d6:	44 e1       	ldi	r20, 0x14	; 20
+    11d8:	67 e4       	ldi	r22, 0x47	; 71
+    11da:	89 e2       	ldi	r24, 0x29	; 41
+    11dc:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x49, 0xFF);
+    11e0:	4f ef       	ldi	r20, 0xFF	; 255
+    11e2:	69 e4       	ldi	r22, 0x49	; 73
+    11e4:	89 e2       	ldi	r24, 0x29	; 41
+    11e6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x4A, 0x00);
+    11ea:	40 e0       	ldi	r20, 0x00	; 0
+    11ec:	6a e4       	ldi	r22, 0x4A	; 74
+    11ee:	89 e2       	ldi	r24, 0x29	; 41
+    11f0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    11f4:	40 e0       	ldi	r20, 0x00	; 0
+    11f6:	6f ef       	ldi	r22, 0xFF	; 255
+    11f8:	89 e2       	ldi	r24, 0x29	; 41
+    11fa:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x7A, 0x0A);
+    11fe:	4a e0       	ldi	r20, 0x0A	; 10
+    1200:	6a e7       	ldi	r22, 0x7A	; 122
+    1202:	89 e2       	ldi	r24, 0x29	; 41
+    1204:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x7B, 0x00);
+    1208:	40 e0       	ldi	r20, 0x00	; 0
+    120a:	6b e7       	ldi	r22, 0x7B	; 123
+    120c:	89 e2       	ldi	r24, 0x29	; 41
+    120e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x78, 0x21);
+    1212:	41 e2       	ldi	r20, 0x21	; 33
+    1214:	68 e7       	ldi	r22, 0x78	; 120
+    1216:	89 e2       	ldi	r24, 0x29	; 41
+    1218:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    121c:	41 e0       	ldi	r20, 0x01	; 1
+    121e:	6f ef       	ldi	r22, 0xFF	; 255
+    1220:	89 e2       	ldi	r24, 0x29	; 41
+    1222:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x23, 0x34);
+    1226:	44 e3       	ldi	r20, 0x34	; 52
+    1228:	63 e2       	ldi	r22, 0x23	; 35
+    122a:	89 e2       	ldi	r24, 0x29	; 41
+    122c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x42, 0x00);
+    1230:	40 e0       	ldi	r20, 0x00	; 0
+    1232:	62 e4       	ldi	r22, 0x42	; 66
+    1234:	89 e2       	ldi	r24, 0x29	; 41
+    1236:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x44, 0xFF);
+    123a:	4f ef       	ldi	r20, 0xFF	; 255
+    123c:	64 e4       	ldi	r22, 0x44	; 68
+    123e:	89 e2       	ldi	r24, 0x29	; 41
+    1240:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x45, 0x26);
+    1244:	46 e2       	ldi	r20, 0x26	; 38
+    1246:	65 e4       	ldi	r22, 0x45	; 69
+    1248:	89 e2       	ldi	r24, 0x29	; 41
+    124a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x46, 0x05);
+    124e:	45 e0       	ldi	r20, 0x05	; 5
+    1250:	66 e4       	ldi	r22, 0x46	; 70
+    1252:	89 e2       	ldi	r24, 0x29	; 41
+    1254:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x40, 0x40);
+    1258:	40 e4       	ldi	r20, 0x40	; 64
+    125a:	60 e4       	ldi	r22, 0x40	; 64
+    125c:	89 e2       	ldi	r24, 0x29	; 41
+    125e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x0E, 0x06);
+    1262:	46 e0       	ldi	r20, 0x06	; 6
+    1264:	6e e0       	ldi	r22, 0x0E	; 14
+    1266:	89 e2       	ldi	r24, 0x29	; 41
+    1268:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x20, 0x1A);
+    126c:	4a e1       	ldi	r20, 0x1A	; 26
+    126e:	60 e2       	ldi	r22, 0x20	; 32
+    1270:	89 e2       	ldi	r24, 0x29	; 41
+    1272:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x43, 0x40);
+    1276:	40 e4       	ldi	r20, 0x40	; 64
+    1278:	63 e4       	ldi	r22, 0x43	; 67
+    127a:	89 e2       	ldi	r24, 0x29	; 41
+    127c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    1280:	40 e0       	ldi	r20, 0x00	; 0
+    1282:	6f ef       	ldi	r22, 0xFF	; 255
+    1284:	89 e2       	ldi	r24, 0x29	; 41
+    1286:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x34, 0x03);
+    128a:	43 e0       	ldi	r20, 0x03	; 3
+    128c:	64 e3       	ldi	r22, 0x34	; 52
+    128e:	89 e2       	ldi	r24, 0x29	; 41
+    1290:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x35, 0x44);
+    1294:	44 e4       	ldi	r20, 0x44	; 68
+    1296:	65 e3       	ldi	r22, 0x35	; 53
+    1298:	89 e2       	ldi	r24, 0x29	; 41
+    129a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    129e:	41 e0       	ldi	r20, 0x01	; 1
+    12a0:	6f ef       	ldi	r22, 0xFF	; 255
+    12a2:	89 e2       	ldi	r24, 0x29	; 41
+    12a4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x31, 0x04);
+    12a8:	44 e0       	ldi	r20, 0x04	; 4
+    12aa:	61 e3       	ldi	r22, 0x31	; 49
+    12ac:	89 e2       	ldi	r24, 0x29	; 41
+    12ae:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x4B, 0x09);
+    12b2:	49 e0       	ldi	r20, 0x09	; 9
+    12b4:	6b e4       	ldi	r22, 0x4B	; 75
+    12b6:	89 e2       	ldi	r24, 0x29	; 41
+    12b8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x4C, 0x05);
+    12bc:	45 e0       	ldi	r20, 0x05	; 5
+    12be:	6c e4       	ldi	r22, 0x4C	; 76
+    12c0:	89 e2       	ldi	r24, 0x29	; 41
+    12c2:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x4D, 0x04);
+    12c6:	44 e0       	ldi	r20, 0x04	; 4
+    12c8:	6d e4       	ldi	r22, 0x4D	; 77
+    12ca:	89 e2       	ldi	r24, 0x29	; 41
+    12cc:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    12d0:	40 e0       	ldi	r20, 0x00	; 0
+    12d2:	6f ef       	ldi	r22, 0xFF	; 255
+    12d4:	89 e2       	ldi	r24, 0x29	; 41
+    12d6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x44, 0x00);
+    12da:	40 e0       	ldi	r20, 0x00	; 0
+    12dc:	64 e4       	ldi	r22, 0x44	; 68
+    12de:	89 e2       	ldi	r24, 0x29	; 41
+    12e0:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x45, 0x20);
+    12e4:	40 e2       	ldi	r20, 0x20	; 32
+    12e6:	65 e4       	ldi	r22, 0x45	; 69
+    12e8:	89 e2       	ldi	r24, 0x29	; 41
+    12ea:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x47, 0x08);
+    12ee:	48 e0       	ldi	r20, 0x08	; 8
+    12f0:	67 e4       	ldi	r22, 0x47	; 71
+    12f2:	89 e2       	ldi	r24, 0x29	; 41
+    12f4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x48, 0x28);
+    12f8:	48 e2       	ldi	r20, 0x28	; 40
+    12fa:	68 e4       	ldi	r22, 0x48	; 72
+    12fc:	89 e2       	ldi	r24, 0x29	; 41
+    12fe:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x67, 0x00);
+    1302:	40 e0       	ldi	r20, 0x00	; 0
+    1304:	67 e6       	ldi	r22, 0x67	; 103
+    1306:	89 e2       	ldi	r24, 0x29	; 41
+    1308:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x70, 0x04);
+    130c:	44 e0       	ldi	r20, 0x04	; 4
+    130e:	60 e7       	ldi	r22, 0x70	; 112
+    1310:	89 e2       	ldi	r24, 0x29	; 41
+    1312:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x71, 0x01);
+    1316:	41 e0       	ldi	r20, 0x01	; 1
+    1318:	61 e7       	ldi	r22, 0x71	; 113
+    131a:	89 e2       	ldi	r24, 0x29	; 41
+    131c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x72, 0xFE);
+    1320:	4e ef       	ldi	r20, 0xFE	; 254
+    1322:	62 e7       	ldi	r22, 0x72	; 114
+    1324:	89 e2       	ldi	r24, 0x29	; 41
+    1326:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x76, 0x00);
+    132a:	40 e0       	ldi	r20, 0x00	; 0
+    132c:	66 e7       	ldi	r22, 0x76	; 118
+    132e:	89 e2       	ldi	r24, 0x29	; 41
+    1330:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x77, 0x00);
+    1334:	40 e0       	ldi	r20, 0x00	; 0
+    1336:	67 e7       	ldi	r22, 0x77	; 119
+    1338:	89 e2       	ldi	r24, 0x29	; 41
+    133a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    133e:	41 e0       	ldi	r20, 0x01	; 1
+    1340:	6f ef       	ldi	r22, 0xFF	; 255
+    1342:	89 e2       	ldi	r24, 0x29	; 41
+    1344:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x0D, 0x01);
+    1348:	41 e0       	ldi	r20, 0x01	; 1
+    134a:	6d e0       	ldi	r22, 0x0D	; 13
+    134c:	89 e2       	ldi	r24, 0x29	; 41
+    134e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    1352:	40 e0       	ldi	r20, 0x00	; 0
+    1354:	6f ef       	ldi	r22, 0xFF	; 255
+    1356:	89 e2       	ldi	r24, 0x29	; 41
+    1358:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x01);
+    135c:	41 e0       	ldi	r20, 0x01	; 1
+    135e:	60 e8       	ldi	r22, 0x80	; 128
+    1360:	89 e2       	ldi	r24, 0x29	; 41
+    1362:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x01, 0xF8);
+    1366:	48 ef       	ldi	r20, 0xF8	; 248
+    1368:	61 e0       	ldi	r22, 0x01	; 1
+    136a:	89 e2       	ldi	r24, 0x29	; 41
+    136c:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x01);
+    1370:	41 e0       	ldi	r20, 0x01	; 1
+    1372:	6f ef       	ldi	r22, 0xFF	; 255
+    1374:	89 e2       	ldi	r24, 0x29	; 41
+    1376:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x8E, 0x01);
+    137a:	41 e0       	ldi	r20, 0x01	; 1
+    137c:	6e e8       	ldi	r22, 0x8E	; 142
+    137e:	89 e2       	ldi	r24, 0x29	; 41
+    1380:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x00, 0x01);
+    1384:	41 e0       	ldi	r20, 0x01	; 1
+    1386:	60 e0       	ldi	r22, 0x00	; 0
+    1388:	89 e2       	ldi	r24, 0x29	; 41
+    138a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0xFF, 0x00);
+    138e:	40 e0       	ldi	r20, 0x00	; 0
+    1390:	6f ef       	ldi	r22, 0xFF	; 255
+    1392:	89 e2       	ldi	r24, 0x29	; 41
+    1394:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,0x80, 0x00);
+    1398:	40 e0       	ldi	r20, 0x00	; 0
+    139a:	60 e8       	ldi	r22, 0x80	; 128
+    139c:	89 e2       	ldi	r24, 0x29	; 41
+    139e:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	// -- VL53L0X_load_tuning_settings() end
+
+	// "Set interrupt config to new sample ready"
+	// -- VL53L0X_SetGpioConfig() begin
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CONFIG_GPIO, 0x04);
+    13a2:	44 e0       	ldi	r20, 0x04	; 4
+    13a4:	6a e0       	ldi	r22, 0x0A	; 10
+    13a6:	89 e2       	ldi	r24, 0x29	; 41
+    13a8:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,GPIO_HV_MUX_ACTIVE_HIGH, I2C_readReg(VL53L0XADDRESS,GPIO_HV_MUX_ACTIVE_HIGH) & ~0x10); // active low
+    13ac:	64 e8       	ldi	r22, 0x84	; 132
+    13ae:	89 e2       	ldi	r24, 0x29	; 41
+    13b0:	0e 94 62 01 	call	0x2c4	; 0x2c4 <I2C_readReg>
+    13b4:	48 2f       	mov	r20, r24
+    13b6:	4f 7e       	andi	r20, 0xEF	; 239
+    13b8:	64 e8       	ldi	r22, 0x84	; 132
+    13ba:	89 e2       	ldi	r24, 0x29	; 41
+    13bc:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_INTERRUPT_CLEAR, 0x01);
+    13c0:	41 e0       	ldi	r20, 0x01	; 1
+    13c2:	6b e0       	ldi	r22, 0x0B	; 11
+    13c4:	89 e2       	ldi	r24, 0x29	; 41
+    13c6:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// -- VL53L0X_SetGpioConfig() end
+
+	VL53L0X_measurement_timing_budget_us = VL53L0X_getMeasurementTimingBudget();
+    13ca:	0e 94 fa 05 	call	0xbf4	; 0xbf4 <VL53L0X_getMeasurementTimingBudget>
+    13ce:	60 93 05 01 	sts	0x0105, r22	; 0x800105 <VL53L0X_measurement_timing_budget_us>
+    13d2:	70 93 06 01 	sts	0x0106, r23	; 0x800106 <VL53L0X_measurement_timing_budget_us+0x1>
+    13d6:	80 93 07 01 	sts	0x0107, r24	; 0x800107 <VL53L0X_measurement_timing_budget_us+0x2>
+    13da:	90 93 08 01 	sts	0x0108, r25	; 0x800108 <VL53L0X_measurement_timing_budget_us+0x3>
+	// "Disable MSRC and TCC by default"
+	// MSRC = Minimum Signal Rate Check
+	// TCC = Target CentreCheck
+	// -- VL53L0X_SetSequenceStepEnable() begin
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0xE8);
+    13de:	48 ee       	ldi	r20, 0xE8	; 232
+    13e0:	61 e0       	ldi	r22, 0x01	; 1
+    13e2:	89 e2       	ldi	r24, 0x29	; 41
+    13e4:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// -- VL53L0X_SetSequenceStepEnable() end
+
+	// "Recalculate timing budget"
+	VL53L0X_setMeasurementTimingBudget(VL53L0X_measurement_timing_budget_us);
+    13e8:	60 91 05 01 	lds	r22, 0x0105	; 0x800105 <VL53L0X_measurement_timing_budget_us>
+    13ec:	70 91 06 01 	lds	r23, 0x0106	; 0x800106 <VL53L0X_measurement_timing_budget_us+0x1>
+    13f0:	80 91 07 01 	lds	r24, 0x0107	; 0x800107 <VL53L0X_measurement_timing_budget_us+0x2>
+    13f4:	90 91 08 01 	lds	r25, 0x0108	; 0x800108 <VL53L0X_measurement_timing_budget_us+0x3>
+    13f8:	0e 94 bc 06 	call	0xd78	; 0xd78 <VL53L0X_setMeasurementTimingBudget>
+
+	// VL53L0X_PerformRefCalibration() begin (VL53L0X_perform_ref_calibration())
+
+	// -- VL53L0X_perform_vhv_calibration() begin
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0x01);
+    13fc:	41 e0       	ldi	r20, 0x01	; 1
+    13fe:	61 e0       	ldi	r22, 0x01	; 1
+    1400:	89 e2       	ldi	r24, 0x29	; 41
+    1402:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	if (!VL53L0X_performSingleRefCalibration(0x40)) { return 0; }
+    1406:	80 e4       	ldi	r24, 0x40	; 64
+    1408:	0e 94 5b 07 	call	0xeb6	; 0xeb6 <VL53L0X_performSingleRefCalibration>
+    140c:	88 23       	and	r24, r24
+    140e:	91 f0       	breq	.+36     	; 0x1434 <VL53L0X_init+0x546>
+
+	// -- VL53L0X_perform_vhv_calibration() end
+
+	// -- VL53L0X_perform_phase_calibration() begin
+
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0x02);
+    1410:	42 e0       	ldi	r20, 0x02	; 2
+    1412:	61 e0       	ldi	r22, 0x01	; 1
+    1414:	89 e2       	ldi	r24, 0x29	; 41
+    1416:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+	if (!VL53L0X_performSingleRefCalibration(0x00)) { return 0; }
+    141a:	80 e0       	ldi	r24, 0x00	; 0
+    141c:	0e 94 5b 07 	call	0xeb6	; 0xeb6 <VL53L0X_performSingleRefCalibration>
+    1420:	88 23       	and	r24, r24
+    1422:	41 f0       	breq	.+16     	; 0x1434 <VL53L0X_init+0x546>
+
+	// -- VL53L0X_perform_phase_calibration() end
+
+	// "restore the previous Sequence Config"
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0xE8);
+    1424:	48 ee       	ldi	r20, 0xE8	; 232
+    1426:	61 e0       	ldi	r22, 0x01	; 1
+    1428:	89 e2       	ldi	r24, 0x29	; 41
+    142a:	0e 94 47 01 	call	0x28e	; 0x28e <I2C_writeReg>
+
+	// VL53L0X_PerformRefCalibration() end
+
+	return 1;
+    142e:	81 e0       	ldi	r24, 0x01	; 1
+    1430:	01 c0       	rjmp	.+2      	; 0x1434 <VL53L0X_init+0x546>
+	}
+
+	// "Set I2C standard mode"
+	I2C_writeReg(VL53L0XADDRESS,0x88, 0x00);
+	if(I2C_err)
+		return 0;
+    1432:	80 e0       	ldi	r24, 0x00	; 0
+	I2C_writeReg(VL53L0XADDRESS,SYSTEM_SEQUENCE_CONFIG, 0xE8);
+
+	// VL53L0X_PerformRefCalibration() end
+
+	return 1;
+}
+    1434:	28 96       	adiw	r28, 0x08	; 8
+    1436:	0f b6       	in	r0, 0x3f	; 63
+    1438:	f8 94       	cli
+    143a:	de bf       	out	0x3e, r29	; 62
+    143c:	0f be       	out	0x3f, r0	; 63
+    143e:	cd bf       	out	0x3d, r28	; 61
+    1440:	df 91       	pop	r29
+    1442:	cf 91       	pop	r28
+    1444:	08 95       	ret
+
+00001446 <__cmpsf2>:
+    1446:	0e 94 94 0a 	call	0x1528	; 0x1528 <__fp_cmp>
+    144a:	08 f4       	brcc	.+2      	; 0x144e <__cmpsf2+0x8>
+    144c:	81 e0       	ldi	r24, 0x01	; 1
+    144e:	08 95       	ret
+
+00001450 <__fixunssfsi>:
+    1450:	0e 94 c0 0a 	call	0x1580	; 0x1580 <__fp_splitA>
+    1454:	88 f0       	brcs	.+34     	; 0x1478 <__fixunssfsi+0x28>
+    1456:	9f 57       	subi	r25, 0x7F	; 127
+    1458:	98 f0       	brcs	.+38     	; 0x1480 <__fixunssfsi+0x30>
+    145a:	b9 2f       	mov	r27, r25
+    145c:	99 27       	eor	r25, r25
+    145e:	b7 51       	subi	r27, 0x17	; 23
+    1460:	b0 f0       	brcs	.+44     	; 0x148e <__fixunssfsi+0x3e>
+    1462:	e1 f0       	breq	.+56     	; 0x149c <__fixunssfsi+0x4c>
+    1464:	66 0f       	add	r22, r22
+    1466:	77 1f       	adc	r23, r23
+    1468:	88 1f       	adc	r24, r24
+    146a:	99 1f       	adc	r25, r25
+    146c:	1a f0       	brmi	.+6      	; 0x1474 <__fixunssfsi+0x24>
+    146e:	ba 95       	dec	r27
+    1470:	c9 f7       	brne	.-14     	; 0x1464 <__fixunssfsi+0x14>
+    1472:	14 c0       	rjmp	.+40     	; 0x149c <__fixunssfsi+0x4c>
+    1474:	b1 30       	cpi	r27, 0x01	; 1
+    1476:	91 f0       	breq	.+36     	; 0x149c <__fixunssfsi+0x4c>
+    1478:	0e 94 da 0a 	call	0x15b4	; 0x15b4 <__fp_zero>
+    147c:	b1 e0       	ldi	r27, 0x01	; 1
+    147e:	08 95       	ret
+    1480:	0c 94 da 0a 	jmp	0x15b4	; 0x15b4 <__fp_zero>
+    1484:	67 2f       	mov	r22, r23
+    1486:	78 2f       	mov	r23, r24
+    1488:	88 27       	eor	r24, r24
+    148a:	b8 5f       	subi	r27, 0xF8	; 248
+    148c:	39 f0       	breq	.+14     	; 0x149c <__fixunssfsi+0x4c>
+    148e:	b9 3f       	cpi	r27, 0xF9	; 249
+    1490:	cc f3       	brlt	.-14     	; 0x1484 <__fixunssfsi+0x34>
+    1492:	86 95       	lsr	r24
+    1494:	77 95       	ror	r23
+    1496:	67 95       	ror	r22
+    1498:	b3 95       	inc	r27
+    149a:	d9 f7       	brne	.-10     	; 0x1492 <__fixunssfsi+0x42>
+    149c:	3e f4       	brtc	.+14     	; 0x14ac <__fixunssfsi+0x5c>
+    149e:	90 95       	com	r25
+    14a0:	80 95       	com	r24
+    14a2:	70 95       	com	r23
+    14a4:	61 95       	neg	r22
+    14a6:	7f 4f       	sbci	r23, 0xFF	; 255
+    14a8:	8f 4f       	sbci	r24, 0xFF	; 255
+    14aa:	9f 4f       	sbci	r25, 0xFF	; 255
+    14ac:	08 95       	ret
+
+000014ae <__floatunsisf>:
+    14ae:	e8 94       	clt
+    14b0:	09 c0       	rjmp	.+18     	; 0x14c4 <__floatsisf+0x12>
+
+000014b2 <__floatsisf>:
+    14b2:	97 fb       	bst	r25, 7
+    14b4:	3e f4       	brtc	.+14     	; 0x14c4 <__floatsisf+0x12>
+    14b6:	90 95       	com	r25
+    14b8:	80 95       	com	r24
+    14ba:	70 95       	com	r23
+    14bc:	61 95       	neg	r22
+    14be:	7f 4f       	sbci	r23, 0xFF	; 255
+    14c0:	8f 4f       	sbci	r24, 0xFF	; 255
+    14c2:	9f 4f       	sbci	r25, 0xFF	; 255
+    14c4:	99 23       	and	r25, r25
+    14c6:	a9 f0       	breq	.+42     	; 0x14f2 <__floatsisf+0x40>
+    14c8:	f9 2f       	mov	r31, r25
+    14ca:	96 e9       	ldi	r25, 0x96	; 150
+    14cc:	bb 27       	eor	r27, r27
+    14ce:	93 95       	inc	r25
+    14d0:	f6 95       	lsr	r31
+    14d2:	87 95       	ror	r24
+    14d4:	77 95       	ror	r23
+    14d6:	67 95       	ror	r22
+    14d8:	b7 95       	ror	r27
+    14da:	f1 11       	cpse	r31, r1
+    14dc:	f8 cf       	rjmp	.-16     	; 0x14ce <__floatsisf+0x1c>
+    14de:	fa f4       	brpl	.+62     	; 0x151e <__floatsisf+0x6c>
+    14e0:	bb 0f       	add	r27, r27
+    14e2:	11 f4       	brne	.+4      	; 0x14e8 <__floatsisf+0x36>
+    14e4:	60 ff       	sbrs	r22, 0
+    14e6:	1b c0       	rjmp	.+54     	; 0x151e <__floatsisf+0x6c>
+    14e8:	6f 5f       	subi	r22, 0xFF	; 255
+    14ea:	7f 4f       	sbci	r23, 0xFF	; 255
+    14ec:	8f 4f       	sbci	r24, 0xFF	; 255
+    14ee:	9f 4f       	sbci	r25, 0xFF	; 255
+    14f0:	16 c0       	rjmp	.+44     	; 0x151e <__floatsisf+0x6c>
+    14f2:	88 23       	and	r24, r24
+    14f4:	11 f0       	breq	.+4      	; 0x14fa <__floatsisf+0x48>
+    14f6:	96 e9       	ldi	r25, 0x96	; 150
+    14f8:	11 c0       	rjmp	.+34     	; 0x151c <__floatsisf+0x6a>
+    14fa:	77 23       	and	r23, r23
+    14fc:	21 f0       	breq	.+8      	; 0x1506 <__floatsisf+0x54>
+    14fe:	9e e8       	ldi	r25, 0x8E	; 142
+    1500:	87 2f       	mov	r24, r23
+    1502:	76 2f       	mov	r23, r22
+    1504:	05 c0       	rjmp	.+10     	; 0x1510 <__floatsisf+0x5e>
+    1506:	66 23       	and	r22, r22
+    1508:	71 f0       	breq	.+28     	; 0x1526 <__floatsisf+0x74>
+    150a:	96 e8       	ldi	r25, 0x86	; 134
+    150c:	86 2f       	mov	r24, r22
+    150e:	70 e0       	ldi	r23, 0x00	; 0
+    1510:	60 e0       	ldi	r22, 0x00	; 0
+    1512:	2a f0       	brmi	.+10     	; 0x151e <__floatsisf+0x6c>
+    1514:	9a 95       	dec	r25
+    1516:	66 0f       	add	r22, r22
+    1518:	77 1f       	adc	r23, r23
+    151a:	88 1f       	adc	r24, r24
+    151c:	da f7       	brpl	.-10     	; 0x1514 <__floatsisf+0x62>
+    151e:	88 0f       	add	r24, r24
+    1520:	96 95       	lsr	r25
+    1522:	87 95       	ror	r24
+    1524:	97 f9       	bld	r25, 7
+    1526:	08 95       	ret
+
+00001528 <__fp_cmp>:
+    1528:	99 0f       	add	r25, r25
+    152a:	00 08       	sbc	r0, r0
+    152c:	55 0f       	add	r21, r21
+    152e:	aa 0b       	sbc	r26, r26
+    1530:	e0 e8       	ldi	r30, 0x80	; 128
+    1532:	fe ef       	ldi	r31, 0xFE	; 254
+    1534:	16 16       	cp	r1, r22
+    1536:	17 06       	cpc	r1, r23
+    1538:	e8 07       	cpc	r30, r24
+    153a:	f9 07       	cpc	r31, r25
+    153c:	c0 f0       	brcs	.+48     	; 0x156e <__fp_cmp+0x46>
+    153e:	12 16       	cp	r1, r18
+    1540:	13 06       	cpc	r1, r19
+    1542:	e4 07       	cpc	r30, r20
+    1544:	f5 07       	cpc	r31, r21
+    1546:	98 f0       	brcs	.+38     	; 0x156e <__fp_cmp+0x46>
+    1548:	62 1b       	sub	r22, r18
+    154a:	73 0b       	sbc	r23, r19
+    154c:	84 0b       	sbc	r24, r20
+    154e:	95 0b       	sbc	r25, r21
+    1550:	39 f4       	brne	.+14     	; 0x1560 <__fp_cmp+0x38>
+    1552:	0a 26       	eor	r0, r26
+    1554:	61 f0       	breq	.+24     	; 0x156e <__fp_cmp+0x46>
+    1556:	23 2b       	or	r18, r19
+    1558:	24 2b       	or	r18, r20
+    155a:	25 2b       	or	r18, r21
+    155c:	21 f4       	brne	.+8      	; 0x1566 <__fp_cmp+0x3e>
+    155e:	08 95       	ret
+    1560:	0a 26       	eor	r0, r26
+    1562:	09 f4       	brne	.+2      	; 0x1566 <__fp_cmp+0x3e>
+    1564:	a1 40       	sbci	r26, 0x01	; 1
+    1566:	a6 95       	lsr	r26
+    1568:	8f ef       	ldi	r24, 0xFF	; 255
+    156a:	81 1d       	adc	r24, r1
+    156c:	81 1d       	adc	r24, r1
+    156e:	08 95       	ret
+
+00001570 <__fp_split3>:
+    1570:	57 fd       	sbrc	r21, 7
+    1572:	90 58       	subi	r25, 0x80	; 128
+    1574:	44 0f       	add	r20, r20
+    1576:	55 1f       	adc	r21, r21
+    1578:	59 f0       	breq	.+22     	; 0x1590 <__fp_splitA+0x10>
+    157a:	5f 3f       	cpi	r21, 0xFF	; 255
+    157c:	71 f0       	breq	.+28     	; 0x159a <__fp_splitA+0x1a>
+    157e:	47 95       	ror	r20
+
+00001580 <__fp_splitA>:
+    1580:	88 0f       	add	r24, r24
+    1582:	97 fb       	bst	r25, 7
+    1584:	99 1f       	adc	r25, r25
+    1586:	61 f0       	breq	.+24     	; 0x15a0 <__fp_splitA+0x20>
+    1588:	9f 3f       	cpi	r25, 0xFF	; 255
+    158a:	79 f0       	breq	.+30     	; 0x15aa <__fp_splitA+0x2a>
+    158c:	87 95       	ror	r24
+    158e:	08 95       	ret
+    1590:	12 16       	cp	r1, r18
+    1592:	13 06       	cpc	r1, r19
+    1594:	14 06       	cpc	r1, r20
+    1596:	55 1f       	adc	r21, r21
+    1598:	f2 cf       	rjmp	.-28     	; 0x157e <__fp_split3+0xe>
+    159a:	46 95       	lsr	r20
+    159c:	f1 df       	rcall	.-30     	; 0x1580 <__fp_splitA>
+    159e:	08 c0       	rjmp	.+16     	; 0x15b0 <__fp_splitA+0x30>
+    15a0:	16 16       	cp	r1, r22
+    15a2:	17 06       	cpc	r1, r23
+    15a4:	18 06       	cpc	r1, r24
+    15a6:	99 1f       	adc	r25, r25
+    15a8:	f1 cf       	rjmp	.-30     	; 0x158c <__fp_splitA+0xc>
+    15aa:	86 95       	lsr	r24
+    15ac:	71 05       	cpc	r23, r1
+    15ae:	61 05       	cpc	r22, r1
+    15b0:	08 94       	sec
+    15b2:	08 95       	ret
+
+000015b4 <__fp_zero>:
+    15b4:	e8 94       	clt
+
+000015b6 <__fp_szero>:
+    15b6:	bb 27       	eor	r27, r27
+    15b8:	66 27       	eor	r22, r22
+    15ba:	77 27       	eor	r23, r23
+    15bc:	cb 01       	movw	r24, r22
+    15be:	97 f9       	bld	r25, 7
+    15c0:	08 95       	ret
+
+000015c2 <__gesf2>:
+    15c2:	0e 94 94 0a 	call	0x1528	; 0x1528 <__fp_cmp>
+    15c6:	08 f4       	brcc	.+2      	; 0x15ca <__gesf2+0x8>
+    15c8:	8f ef       	ldi	r24, 0xFF	; 255
+    15ca:	08 95       	ret
+
+000015cc <__mulsf3>:
+    15cc:	0e 94 f9 0a 	call	0x15f2	; 0x15f2 <__mulsf3x>
+    15d0:	0c 94 6a 0b 	jmp	0x16d4	; 0x16d4 <__fp_round>
+    15d4:	0e 94 5c 0b 	call	0x16b8	; 0x16b8 <__fp_pscA>
+    15d8:	38 f0       	brcs	.+14     	; 0x15e8 <__mulsf3+0x1c>
+    15da:	0e 94 63 0b 	call	0x16c6	; 0x16c6 <__fp_pscB>
+    15de:	20 f0       	brcs	.+8      	; 0x15e8 <__mulsf3+0x1c>
+    15e0:	95 23       	and	r25, r21
+    15e2:	11 f0       	breq	.+4      	; 0x15e8 <__mulsf3+0x1c>
+    15e4:	0c 94 53 0b 	jmp	0x16a6	; 0x16a6 <__fp_inf>
+    15e8:	0c 94 59 0b 	jmp	0x16b2	; 0x16b2 <__fp_nan>
+    15ec:	11 24       	eor	r1, r1
+    15ee:	0c 94 db 0a 	jmp	0x15b6	; 0x15b6 <__fp_szero>
+
+000015f2 <__mulsf3x>:
+    15f2:	0e 94 b8 0a 	call	0x1570	; 0x1570 <__fp_split3>
+    15f6:	70 f3       	brcs	.-36     	; 0x15d4 <__mulsf3+0x8>
+
+000015f8 <__mulsf3_pse>:
+    15f8:	95 9f       	mul	r25, r21
+    15fa:	c1 f3       	breq	.-16     	; 0x15ec <__mulsf3+0x20>
+    15fc:	95 0f       	add	r25, r21
+    15fe:	50 e0       	ldi	r21, 0x00	; 0
+    1600:	55 1f       	adc	r21, r21
+    1602:	62 9f       	mul	r22, r18
+    1604:	f0 01       	movw	r30, r0
+    1606:	72 9f       	mul	r23, r18
+    1608:	bb 27       	eor	r27, r27
+    160a:	f0 0d       	add	r31, r0
+    160c:	b1 1d       	adc	r27, r1
+    160e:	63 9f       	mul	r22, r19
+    1610:	aa 27       	eor	r26, r26
+    1612:	f0 0d       	add	r31, r0
+    1614:	b1 1d       	adc	r27, r1
+    1616:	aa 1f       	adc	r26, r26
+    1618:	64 9f       	mul	r22, r20
+    161a:	66 27       	eor	r22, r22
+    161c:	b0 0d       	add	r27, r0
+    161e:	a1 1d       	adc	r26, r1
+    1620:	66 1f       	adc	r22, r22
+    1622:	82 9f       	mul	r24, r18
+    1624:	22 27       	eor	r18, r18
+    1626:	b0 0d       	add	r27, r0
+    1628:	a1 1d       	adc	r26, r1
+    162a:	62 1f       	adc	r22, r18
+    162c:	73 9f       	mul	r23, r19
+    162e:	b0 0d       	add	r27, r0
+    1630:	a1 1d       	adc	r26, r1
+    1632:	62 1f       	adc	r22, r18
+    1634:	83 9f       	mul	r24, r19
+    1636:	a0 0d       	add	r26, r0
+    1638:	61 1d       	adc	r22, r1
+    163a:	22 1f       	adc	r18, r18
+    163c:	74 9f       	mul	r23, r20
+    163e:	33 27       	eor	r19, r19
+    1640:	a0 0d       	add	r26, r0
+    1642:	61 1d       	adc	r22, r1
+    1644:	23 1f       	adc	r18, r19
+    1646:	84 9f       	mul	r24, r20
+    1648:	60 0d       	add	r22, r0
+    164a:	21 1d       	adc	r18, r1
+    164c:	82 2f       	mov	r24, r18
+    164e:	76 2f       	mov	r23, r22
+    1650:	6a 2f       	mov	r22, r26
+    1652:	11 24       	eor	r1, r1
+    1654:	9f 57       	subi	r25, 0x7F	; 127
+    1656:	50 40       	sbci	r21, 0x00	; 0
+    1658:	9a f0       	brmi	.+38     	; 0x1680 <__mulsf3_pse+0x88>
+    165a:	f1 f0       	breq	.+60     	; 0x1698 <__mulsf3_pse+0xa0>
+    165c:	88 23       	and	r24, r24
+    165e:	4a f0       	brmi	.+18     	; 0x1672 <__mulsf3_pse+0x7a>
+    1660:	ee 0f       	add	r30, r30
+    1662:	ff 1f       	adc	r31, r31
+    1664:	bb 1f       	adc	r27, r27
+    1666:	66 1f       	adc	r22, r22
+    1668:	77 1f       	adc	r23, r23
+    166a:	88 1f       	adc	r24, r24
+    166c:	91 50       	subi	r25, 0x01	; 1
+    166e:	50 40       	sbci	r21, 0x00	; 0
+    1670:	a9 f7       	brne	.-22     	; 0x165c <__mulsf3_pse+0x64>
+    1672:	9e 3f       	cpi	r25, 0xFE	; 254
+    1674:	51 05       	cpc	r21, r1
+    1676:	80 f0       	brcs	.+32     	; 0x1698 <__mulsf3_pse+0xa0>
+    1678:	0c 94 53 0b 	jmp	0x16a6	; 0x16a6 <__fp_inf>
+    167c:	0c 94 db 0a 	jmp	0x15b6	; 0x15b6 <__fp_szero>
+    1680:	5f 3f       	cpi	r21, 0xFF	; 255
+    1682:	e4 f3       	brlt	.-8      	; 0x167c <__mulsf3_pse+0x84>
+    1684:	98 3e       	cpi	r25, 0xE8	; 232
+    1686:	d4 f3       	brlt	.-12     	; 0x167c <__mulsf3_pse+0x84>
+    1688:	86 95       	lsr	r24
+    168a:	77 95       	ror	r23
+    168c:	67 95       	ror	r22
+    168e:	b7 95       	ror	r27
+    1690:	f7 95       	ror	r31
+    1692:	e7 95       	ror	r30
+    1694:	9f 5f       	subi	r25, 0xFF	; 255
+    1696:	c1 f7       	brne	.-16     	; 0x1688 <__mulsf3_pse+0x90>
+    1698:	fe 2b       	or	r31, r30
+    169a:	88 0f       	add	r24, r24
+    169c:	91 1d       	adc	r25, r1
+    169e:	96 95       	lsr	r25
+    16a0:	87 95       	ror	r24
+    16a2:	97 f9       	bld	r25, 7
+    16a4:	08 95       	ret
+
+000016a6 <__fp_inf>:
+    16a6:	97 f9       	bld	r25, 7
+    16a8:	9f 67       	ori	r25, 0x7F	; 127
+    16aa:	80 e8       	ldi	r24, 0x80	; 128
+    16ac:	70 e0       	ldi	r23, 0x00	; 0
+    16ae:	60 e0       	ldi	r22, 0x00	; 0
+    16b0:	08 95       	ret
+
+000016b2 <__fp_nan>:
+    16b2:	9f ef       	ldi	r25, 0xFF	; 255
+    16b4:	80 ec       	ldi	r24, 0xC0	; 192
+    16b6:	08 95       	ret
+
+000016b8 <__fp_pscA>:
+    16b8:	00 24       	eor	r0, r0
+    16ba:	0a 94       	dec	r0
+    16bc:	16 16       	cp	r1, r22
+    16be:	17 06       	cpc	r1, r23
+    16c0:	18 06       	cpc	r1, r24
+    16c2:	09 06       	cpc	r0, r25
+    16c4:	08 95       	ret
+
+000016c6 <__fp_pscB>:
+    16c6:	00 24       	eor	r0, r0
+    16c8:	0a 94       	dec	r0
+    16ca:	12 16       	cp	r1, r18
+    16cc:	13 06       	cpc	r1, r19
+    16ce:	14 06       	cpc	r1, r20
+    16d0:	05 06       	cpc	r0, r21
+    16d2:	08 95       	ret
+
+000016d4 <__fp_round>:
+    16d4:	09 2e       	mov	r0, r25
+    16d6:	03 94       	inc	r0
+    16d8:	00 0c       	add	r0, r0
+    16da:	11 f4       	brne	.+4      	; 0x16e0 <__fp_round+0xc>
+    16dc:	88 23       	and	r24, r24
+    16de:	52 f0       	brmi	.+20     	; 0x16f4 <__fp_round+0x20>
+    16e0:	bb 0f       	add	r27, r27
+    16e2:	40 f4       	brcc	.+16     	; 0x16f4 <__fp_round+0x20>
+    16e4:	bf 2b       	or	r27, r31
+    16e6:	11 f4       	brne	.+4      	; 0x16ec <__fp_round+0x18>
+    16e8:	60 ff       	sbrs	r22, 0
+    16ea:	04 c0       	rjmp	.+8      	; 0x16f4 <__fp_round+0x20>
+    16ec:	6f 5f       	subi	r22, 0xFF	; 255
+    16ee:	7f 4f       	sbci	r23, 0xFF	; 255
+    16f0:	8f 4f       	sbci	r24, 0xFF	; 255
+    16f2:	9f 4f       	sbci	r25, 0xFF	; 255
+    16f4:	08 95       	ret
+
+000016f6 <__udivmodsi4>:
+    16f6:	a1 e2       	ldi	r26, 0x21	; 33
+    16f8:	1a 2e       	mov	r1, r26
+    16fa:	aa 1b       	sub	r26, r26
+    16fc:	bb 1b       	sub	r27, r27
+    16fe:	fd 01       	movw	r30, r26
+    1700:	0d c0       	rjmp	.+26     	; 0x171c <__udivmodsi4_ep>
+
+00001702 <__udivmodsi4_loop>:
+    1702:	aa 1f       	adc	r26, r26
+    1704:	bb 1f       	adc	r27, r27
+    1706:	ee 1f       	adc	r30, r30
+    1708:	ff 1f       	adc	r31, r31
+    170a:	a2 17       	cp	r26, r18
+    170c:	b3 07       	cpc	r27, r19
+    170e:	e4 07       	cpc	r30, r20
+    1710:	f5 07       	cpc	r31, r21
+    1712:	20 f0       	brcs	.+8      	; 0x171c <__udivmodsi4_ep>
+    1714:	a2 1b       	sub	r26, r18
+    1716:	b3 0b       	sbc	r27, r19
+    1718:	e4 0b       	sbc	r30, r20
+    171a:	f5 0b       	sbc	r31, r21
+
+0000171c <__udivmodsi4_ep>:
+    171c:	66 1f       	adc	r22, r22
+    171e:	77 1f       	adc	r23, r23
+    1720:	88 1f       	adc	r24, r24
+    1722:	99 1f       	adc	r25, r25
+    1724:	1a 94       	dec	r1
+    1726:	69 f7       	brne	.-38     	; 0x1702 <__udivmodsi4_loop>
+    1728:	60 95       	com	r22
+    172a:	70 95       	com	r23
+    172c:	80 95       	com	r24
+    172e:	90 95       	com	r25
+    1730:	9b 01       	movw	r18, r22
+    1732:	ac 01       	movw	r20, r24
+    1734:	bd 01       	movw	r22, r26
+    1736:	cf 01       	movw	r24, r30
+    1738:	08 95       	ret
+
+0000173a <__umulhisi3>:
+    173a:	a2 9f       	mul	r26, r18
+    173c:	b0 01       	movw	r22, r0
+    173e:	b3 9f       	mul	r27, r19
+    1740:	c0 01       	movw	r24, r0
+    1742:	a3 9f       	mul	r26, r19
+    1744:	70 0d       	add	r23, r0
+    1746:	81 1d       	adc	r24, r1
+    1748:	11 24       	eor	r1, r1
+    174a:	91 1d       	adc	r25, r1
+    174c:	b2 9f       	mul	r27, r18
+    174e:	70 0d       	add	r23, r0
+    1750:	81 1d       	adc	r24, r1
+    1752:	11 24       	eor	r1, r1
+    1754:	91 1d       	adc	r25, r1
+    1756:	08 95       	ret
+
+00001758 <__muluhisi3>:
+    1758:	0e 94 9d 0b 	call	0x173a	; 0x173a <__umulhisi3>
+    175c:	a5 9f       	mul	r26, r21
+    175e:	90 0d       	add	r25, r0
+    1760:	b4 9f       	mul	r27, r20
+    1762:	90 0d       	add	r25, r0
+    1764:	a4 9f       	mul	r26, r20
+    1766:	80 0d       	add	r24, r0
+    1768:	91 1d       	adc	r25, r1
+    176a:	11 24       	eor	r1, r1
+    176c:	08 95       	ret
+
+0000176e <_exit>:
+    176e:	f8 94       	cli
+
+00001770 <__stop_program>:
+    1770:	ff cf       	rjmp	.-2      	; 0x1770 <__stop_program>
